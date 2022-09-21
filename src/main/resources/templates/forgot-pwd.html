@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>找回密码</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--头部-->
+    <div class="login-header">
+        <div class="wrapper">
+            <a href="" class="logo">
+                <img src="/img/logo3.png" alt="" />
+            </a>
+            <div class="zp">
+                <span class="ico"></span>
+                <div>正品保障</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wrap">
+        <div class="wrapper">
+            <div class="center-box ">
+
+                <div class="box-hd box-hd-tabs">
+
+                    <a href="javascript:;" class="item">密保找回密码</a>
+                    <a href="javascript:;" class="item">手机找回密码</a>
+                    <!-- 
+                    <a href="javascript:;" class="item">密保找回密码</a>
+ -->
+                </div>
+                <div class="tab-con">
+                    <form action="" method="">
+                        <label class="txtin-box">
+                            <!-- <input class="txtin" type="text" name="" placeholder="手机" /> -->
+                            <span style="font-size: 18px;">密保问题：</span><span id="question" style="font-size: 18px;">啊啊啊啊啊啊</span>
+                        </label>
+                        <label class="txtin-box">
+                            <!-- <input class="txtin" type="text" name="" placeholder="验证码" /> -->
+                            <input class="txtin" type="text" id="answer2" placeholder="密保答案" />
+                            <!-- <img class="yzm" src="" alt="" /> -->
+                        </label>
+                        <input class="tj" type="button" id="button2" value="完&ensp;成" />
+                    </form>
+                </div>
+
+                <div class="tab-con">
+                    <form action="" method="">
+                        <label class="txtin-box">
+                            
+                        </label>
+
+                        <label class="txtin-box txtin-box-code">
+                            <input class="txtin" type="text" name="" placeholder="短信验证码" />
+                            <a href="" class="get-yzm">获取验证码</a>
+                        </label>
+                        <label class="txtin-box txtin-box-code">
+                            <input class="txtin" type="text" name="" placeholder="验证码" />
+                            <img class="yzm" src="" alt="" />
+                        </label>
+                        <!-- <a class="tj" href="reset.pwd.html">完&ensp;成</a> -->
+                        <input class="tj" type="button" id="button" value="完&ensp;成" />
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        河南拼夕夕科技股份有限公司 版权所有 Copyright © 2009-2016 法律顾问：吕海波律师 备案号：皖ICP备06001897
+        <div class="authentication">
+            <a href=""><img src="/uploads/35.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/36.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/37.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/38.jpg" alt="" /></a>
+        </div>
+    </div>
+</body>
+<script src="/js/jquery.js"></script>
+<link rel="stylesheet" href="/js/icheck/style.css" />
+<script src="/js/icheck/icheck.min.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    var url = location.href;
+    var answer1 = "";
+    // alert(url);
+    var uid = url.substring(url.lastIndexOf("=") + 1);
+    // alert(uid);
+    $("#button").click(function() {
+        $.ajax({
+            url: "",
+            type: "get",
+            data: {
+                uid: uid
+            },
+            success: function(resp) {
+                // alert(resp);
+                if (resp) {
+                    location.href = "reset ";
+                } else {
+                    alert("手机验证码错误");
+                    return;
+                }
+            }
+
+        })
+    });
+
+
+    $.ajax({
+        url: "http://localhost/onl/user/findAnswerById",
+        type: "get",
+        data: {
+            uid: uid
+        },
+        success: function(resp) {
+            // alert(resp.question);
+            //密保问题回填
+            $("#question").html(resp.question);
+            answer1 = resp.answer;
+            // alert(answer1);
+        }
+    });
+
+    $("#button2").click(function() {
+        var answer2 = $("#answer2").val();
+        if (answer2 == answer1) {
+            location.href = "reset.pwd.html?uid=" + uid;
+        } else {
+            alert("密保问题错误");
+            return;
+        }
+    });
+
+    //切换找回方式
+    $(function() {
+        $('.center-box').zTab({
+            tabnav: '.box-hd-tabs',
+            trigger: 'click'
+        });
+    });
+</script>
+
+</html>

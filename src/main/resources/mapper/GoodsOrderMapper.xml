@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hs.shop.mapper.GoodsOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.hs.shop.domain.GoodsOrder">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="productIds" column="product_ids" jdbcType="VARCHAR"/>
+            <result property="deliAddressId" column="deli_address_id" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="orderNumber" column="order_number" jdbcType="VARCHAR"/>
+            <result property="orderPrice" column="order_price" jdbcType="DECIMAL"/>
+            <result property="ispay" column="isPay" jdbcType="INTEGER"/>
+            <result property="iswaitdel" column="isWaitDel" jdbcType="INTEGER"/>
+            <result property="iswaitrec" column="isWaitRec" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,product_ids,
+        deli_address_id,create_time,order_number,
+        order_price,isPay,isWaitDel,
+        isWaitRec
+    </sql>
+</mapper>

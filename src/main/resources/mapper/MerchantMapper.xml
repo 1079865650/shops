@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hs.shop.mapper.MerchantMapper">
+
+    <resultMap id="BaseResultMap" type="com.hs.shop.domain.Merchant">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="merchantName" column="merchant_name" jdbcType="VARCHAR"/>
+            <result property="merchantImage" column="merchant_image" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="telphone" column="telphone" jdbcType="VARCHAR"/>
+            <result property="productNumber" column="product_number" jdbcType="INTEGER"/>
+            <result property="saleNumber" column="sale_number" jdbcType="INTEGER"/>
+            <result property="fansCount" column="fans_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,merchant_name,merchant_image,
+        address,telphone,product_number,
+        sale_number,fans_count
+    </sql>
+</mapper>

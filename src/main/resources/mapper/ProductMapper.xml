@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hs.shop.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.hs.shop.domain.Product">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="detail" column="detail" jdbcType="VARCHAR"/>
+            <result property="basisPrice" column="basis_price" jdbcType="DECIMAL"/>
+            <result property="productStock" column="product_stock" jdbcType="INTEGER"/>
+            <result property="sales" column="sales" jdbcType="INTEGER"/>
+            <result property="colMunber" column="col_munber" jdbcType="INTEGER"/>
+            <result property="mainPhoto" column="main_photo" jdbcType="VARCHAR"/>
+            <result property="cateIds" column="cate_ids" jdbcType="VARCHAR"/>
+            <result property="merchantId" column="merchant_id" jdbcType="INTEGER"/>
+            <result property="attr1Id" column="attr1_id" jdbcType="INTEGER"/>
+            <result property="attr2Id" column="attr2_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,product_name,detail,
+        basis_price,product_stock,sales,
+        col_munber,main_photo,cate_ids,
+        merchant_id,attr1_id,attr2_id
+    </sql>
+</mapper>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>支付</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/cart.css" rel="stylesheet" />
+    <style>
+        .col-3 {
+            width: 25%;
+        }
+        
+        .order-result .titbox {
+            padding: 0 20px 18px 0;
+            border-bottom: 0px solid #dbdbdb;
+        }
+        
+        #aaa {
+            text-align: center;
+        }
+        
+        .order-result .tit {
+            font-size: 50px;
+            margin-top: 25px;
+        }
+        
+        .cart-header .step-box .step .num {
+            position: relative;
+            z-index: 2;
+            display: block;
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            color: #fff;
+            background: url(../img/step-circle2.png);
+        }
+        
+        .cart-header .step-box .step .line {
+            position: absolute;
+            top: 13px;
+            left: 0;
+            height: 5px;
+            width: 100%;
+            background-color: #e2e2e2;
+            background: #f34e4e;
+        }
+    </style>
+
+
+
+</head>
+
+
+<body class="graybg-theme">
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="shangjia.html">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" href="uc.html">个人中心<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="uc-msg.html">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a onclick="logout()">退出</a></div>
+                <span class=""></span>
+                <div class="cart"><em></em><a onclick="goCart()">购物车<span class="txt-theme" id="cartNums">0</span>件</a></div>
+                <div class="order"><em></em><a onclick="ucorder()">我的订单</a></div>
+                <div class="fav"><em></em><a href="uc-fav.html">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-header wrapper">
+        <div class="logo">
+            <a href="index.html"><img src="/img/logo.png" alt="logo" /></a>
+        </div>
+        <div class="step-box">
+            <div class="row">
+                <div class="step first active col-3">
+                    <span class="num">1</span><span class="line"></span><span class="label">我的购物车</span>
+                </div>
+                <div class="step active col-3">
+                    <span class="num">2</span><span class="line"></span><span class="label">确认订单信息</span>
+                </div>
+                <div class="step active col-3">
+                    <span class="num">3</span><span class="line"></span><span class="label">选择支付方式</span>
+                </div>
+                <div class="step last col-3">
+                    <span class="num">4</span><span class="line"></span><span class="label">完成付款</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头部-->
+
+    <div class="wrapper">
+        <div class="pay-wrap">
+            <div class="order-result">
+                <div id="aaa" class="section clearfix">
+                    <img id="aaa" src="/img/ico/order-success.jpg" class="ico" />
+                    <div class="titbox">
+                        <div class="tit">支付成功</div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="pay-wrap-tit">
+
+
+            <div class="bottom-panel">
+                <a href="index.html" class="go-next ui-btn-theme">完成</a>
+            </div>
+        </div>
+
+        <!--脚部-->
+        <div class="fatfooter">
+
+        </div>
+        <!--脚部-->
+</body>
+<script src="/js/jquery.js"></script>
+<link rel="stylesheet" href="/js/icheck/style.css" />
+<script src="/js/icheck/icheck.min.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    $('.check').iCheck({
+        radioClass: 'sty1-radio'
+    });
+
+    getCartNums();
+
+    function getCartNums() {
+        $.ajax({
+            headers: {
+                token
+            },
+            url: base + "/cart/findNumber",
+            success: function(res) {
+                $("#cartNums").html(res.data.nums);
+                console.log("更新购物车数量成功:" + res.data.nums)
+            }
+        })
+    };
+</script>
+
+</html>

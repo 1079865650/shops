@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="dd">111</div>
+    <div class="dd">222</div>
+    <div class="dd">333</div>
+
+
+    <button>提交</button>
+
+    <style>
+        div {
+            width: 400px;
+            height: 200px;
+            border: 1px solid gray;
+            margin: 10px;
+        }
+    </style>
+
+    <script src="/js/jquery.js"></script>
+    <script>
+        var dizhi;
+        $(".dd").click(function() {
+            $(".dd").css("backgroundColor", "white");
+            $(this).css("backgroundColor", "blue");
+            dizhi = $(this);
+            alert($(this).find("input[name='shid']").val())
+
+        });
+
+
+        $("button").click(function() {
+            if (dizhi == undefined || dizhi == null) {
+                alert("请选择收货人");
+                return;
+            }
+
+
+            alert(dizhi.html());
+        });
+    </script>
+</body>
+
+</html>

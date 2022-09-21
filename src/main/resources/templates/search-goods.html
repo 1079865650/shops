@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>商品搜索列表页</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/search-goods.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link href="/css/catalog.css" rel="stylesheet" />
+    <Style>
+        .catalogInfo :hover {
+            background-color: rgb(202, 185, 141);
+        }
+    </Style>
+
+</head>
+<script src="public.js"></script>
+
+<body>
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="shangjia.html">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" href="uc.html">个人中心<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="uc-msg.html">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a onclick="logout()">退出</a></div>
+                <span class=""></span>
+                <div class="cart"><em></em><a onclick="goCart()">购物车<span class="txt-theme" id="cartNums">0</span>件</a></div>
+                <div class="order"><em></em><a onclick="ucorder()">我的订单</a></div>
+                <div class="fav"><em></em><a href="uc-fav.html">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="header-wrap">
+        <div class="wrapper header">
+            <a href="index.html" class="logo">
+                <img src="/img/logo3.png" alt="" />
+            </a>
+            <div class="header-schbox">
+                <div class="inner clearfix">
+                    <form action="" method="">
+                        <div class="search-switch">
+                            <i class="arrow"></i>
+                            <div class="item">商品</div>
+                            <div class="item active">店铺</div>
+                        </div>
+                        <input class="search-txt" placeholder="搜流行宝贝">
+                        <button class="search-btn"></button>
+                        <div class="suggest-box">
+                            <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖
+                                <div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hot-words">
+                    <a href="">太平鸟</a><a href="">手机 </a><a href="">内衣</a><a href="">周大福</a><a href="">太平鸟</a>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="item">
+                    <span class="ico iconfont">&#xe61b;</span>
+                    <span class="tel">400-889-8188</span>
+                </div>
+                <div class="item">
+                    <span class="ico iconfont">&#xe61d;</span><a class="kefu">在线客服</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-box">
+        <div class="nav wrapper">
+            <div class="slogan"></div>
+            <ul class="nav-ul">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index-dq.html">家用电器</a></li>
+                <li><a href="index-mz.html">美妆馆</a></li>
+                <li><a href="index-sxtc.html">生鲜特产</a></li>
+                <li><a href="search-goods.html">服装城</a></li>
+            </ul>
+            <div class="nav-ad">
+                <a class="ad" href=""><img src="/uploads/nav-ad.jpg" alt="" /></a>
+            </div>
+        </div>
+    </div>
+    <!--头部-->
+    <div class="wrapper router">
+        <ul class="router-nav">
+            <li><a href="index.html">首页</a></li>
+            <li><span class="divider"></span></li>
+            <li><span>全部搜索结果</span></li>
+        </ul>
+        <div class="sch-result">
+            <span class="tag">平板电视</span><span class="fl">共<span class="num">218</span>个产品</span>
+        </div>
+    </div>
+
+    <div class="filter-box">
+        <div class="wrapper wrap">
+            <div class="resumeContainer">
+                <div class="resumeWrap">
+                    <div class="catalogInfo" onclick="appelone()">
+                        <a href="javascript:void(0);">
+                            <p class="title">秋季新品</p>
+                        </a>
+                        <a class="imgWrap" href="">
+                    </div>
+
+                </div>
+                <div class="resumeWrap">
+                    <div class="catalogInfo" onclick="appeltwo()">
+                        <a href="javascript:void(0);">
+                            <p class="title">服饰内衣</p>
+                        </a>
+                        <a class="imgWrap" href="">
+                    </div>
+                </div>
+                <div class="resumeWrap">
+                    <div class="catalogInfo" onclick="appelthree()">
+                        <a href="javascript:void(0);">
+                            <p class="title">鞋靴箱包</p>
+                        </a>
+                        <a class="imgWrap" href="">
+
+                    </div>
+
+                </div>
+                <div class="resumeWrap">
+                    <div class="catalogInfo" onclick="appelfour()">
+                        <a href="javascript:void(0);">
+                            <p class="title">钟表珠宝</p>
+                        </a>
+                        <a class="imgWrap" href="">
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="sg-main wrapper">
+        <div class="sg-content">
+            <div class="rank-menu">
+                <div class="rank">
+                    <div class="r-item"><a href="javascript:void(0);" onclick="xiaoLiang()">销量</a></div>
+                    <div class="r-item"><a class="active" href="javascript:void(0);" onclick="priceAsc()">价格升序</a></div>
+                    <div class="r-item"><a class="active" href="javascript:void(0);" onclick="priceDesc()">价格降序</span></a></div>
+                </div>
+            </div>
+            <div id="sg-list-clearfix-one" class="sg-list clearfix">
+
+                <div class="col col-3">
+                    <div class="item">
+                        <div class="inner">
+                            <a href="goods-detail.html">
+                                <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>
+                                <div class="price">6099元</div>
+                            </a>
+                            <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-3">
+                    <div class="item">
+                        <div class="inner">
+                            <a href="goods-detail.html">
+                                <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>
+                                <div class="price">6099元</div>
+                            </a>
+                            <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-3">
+                    <div class="item">
+                        <div class="inner">
+                            <a href="goods-detail.html">
+                                <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>
+                                <div class="price">6099元</div>
+                            </a>
+                            <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pages-one" class="pages">
+
+            </div>
+        </div>
+        <div class="sg-aside">
+            <div class="sg-aside-tit">
+                热销商品
+            </div>
+            <div class="shop-hot" id="shop-hot-one">
+                <div class="item">
+                    <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>
+                    <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>
+                    <div class="price">¥5999.00</div>
+                </div>
+                <div class="item">
+                    <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>
+                    <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>
+                    <div class="price">¥5999.00</div>
+                </div>
+                <div class="item">
+                    <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>
+                    <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>
+                    <div class="price">¥5999.00</div>
+                </div>
+                <div class="item">
+                    <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>
+                    <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>
+                    <div class="price">¥5999.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--脚部-->
+    <div class="fatfooter">
+        <div class="wrapper">
+            <div class="fatft-service">
+                <div class="item">
+                    <a href="">
+                        <img src="/img/ico/ft-ser1.png" alt="" class="ico" />
+                        <span>品质保障</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="">
+                        <img src="/img/ico/ft-ser2.png" alt="" class="ico" />
+                        <span>七天无理由退换货</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="">
+                        <img src="/img/ico/ft-ser3.png" alt="" class="ico" />
+                        <span>特色服务体验</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="">
+                        <img src="/img/ico/ft-ser4.png" alt="" class="ico" />
+                        <span>帮助中心</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="fatft-links">
+            <div class="wrapper">
+                <div class="col-link">
+                    <div class="tit">购物指南</div>
+                    <div class="link"><a href="">购物流程</a></div>
+                    <div class="link"><a href="">账户安全</a></div>
+                    <div class="link"><a href="">联系客服</a></div>
+                    <div class="link"><a href="">会员介绍</a></div>
+                </div>
+                <div class="col-link">
+                    <div class="tit">配送方式</div>
+                    <div class="link"><a href="">配送服务查询上</a></div>
+                    <div class="link"><a href="">门自提</a></div>
+                    <div class="link"><a href="">物流费用标准</a></div>
+                </div>
+                <div class="col-link">
+                    <div class="tit">支付方式</div>
+                    <div class="link"><a href="">银联支付</a></div>
+                    <div class="link"><a href="">支付宝支付</a></div>
+                    <div class="link"><a href="">微信支付</a></div>
+                </div>
+                <div class="col-link">
+                    <div class="tit">售后服务</div>
+                    <div class="link"><a href="">售后政策</a></div>
+                    <div class="link"><a href="">价格保护</a></div>
+                    <div class="link"><a href="">退单说明</a></div>
+                    <div class="link"><a href="">取消订单</a></div>
+                </div>
+                <div class="col-link">
+                    <div class="tit">联系我们</div>
+                    <div class="link"><a href="">商家入驻</a></div>
+                    <div class="link"><a href="">营销服务</a></div>
+                    <div class="link"><a href="">关于我们</a></div>
+                    <div class="link"><a href="">广告服务</a></div>
+                </div>
+                <div class="col-contact">
+                    <div class="phone">400-000-0000</div>
+                    <div class="time">周一至周日 8:00-18:00 <br />（仅收市话费）</div>
+                    <div class="tool">
+                        <a href="" class="kefu"><i class="iconfont icon-huifu"></i>在线客服</a>
+                        <a class="ico weixin" href=""><img src="/img/ico/ft-weixin.png" alt="" /><img src="/uploads/ercode.jpg" class="ercode" /></a>
+                        <a class="ico sina" href=""><img src="/img/ico/ft-sina.png" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018 备案号：皖ICP备123456789</div>
+    <!--脚部-->
+
+</body>
+<script src="/js/jquery.js"></script>
+<link rel="stylesheet" href="/js/icheck/style.css" />
+<script src="/js/icheck/icheck.min.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    $('.check input').iCheck({
+        checkboxClass: 'cart-checkbox'
+    }); +
+
+    function() {
+        var dftLine = 4,
+            dftH = 50; //这里品牌的比普通的一行要高，所以用品牌的做标准行高
+        //
+        $('.filter-box .sch-value').each(function(index, el) {
+            var h = $(this).height();
+            if (h > dftH) {
+                $('<a class="prop-toggle"  data-action="prop-toggle" href="javascript:;">查看更多<i></i></a>').insertAfter($(this));
+                $(this).addClass('slideup');
+            }
+        });
+        $('.filter-box .sch-prop').each(function(index, el) {
+            index += 1;
+            if (index == dftLine) {
+                $('.filter-box').append('<span class="filter-toggle" data-action="filter-toggle"><span class="tohide">收起<i></i></span><span class="toshow">更多<i></i></span></span>');
+            }
+            if (index > dftLine) {
+                $(this).addClass('hide');
+            }
+
+        });
+        zAction.add({
+            'filter-toggle': function() {
+                $(this).toggleClass('on').parent().toggleClass('on');
+            },
+            'prop-toggle': function() {
+                $(this).toggleClass('on').prev('.sch-value').toggleClass('slideup')
+            }
+        });
+
+    }();
+
+    +
+
+    function() {
+        var bigH = $('.side-category').height();
+        $(window).on('scroll resize load', function() {
+            var sTop = $(this).scrollTop(),
+                valve = $('.filter-box').offset().top + $('.filter-box').height(),
+                wH = $(this).height();
+
+            //控制导航显示
+            if (sTop > valve) {
+                $('.side-category').show();
+            } else {
+                $('.side-category').hide();
+            }
+        })
+    }();
+
+    //热销专区
+    $.ajax({
+        url: "http://localhost/onl/product/byCateid?cateid=26",
+        type: "get",
+
+        success: function(respData) {
+
+            if (respData.code == 200) {
+                let i = 0;
+
+                for (let lb of respData.data.products) {
+
+                    $($($("#shop-hot-one").children().get(i)).children().get(0)).attr('href', 'http://localhost/goods-detail.html?productid=' + lb.proid);
+                    $($($("#shop-hot-one").children().get(i)).children().get(0)).children().attr('src', 'http://192.168.1.92:8080/img/mainImg/' + lb.mainimage);
+                    $($($("#shop-hot-one").children().get(i)).children().get(1)).text(lb.pname + '     ' + lb.detail)
+                    $($($("#shop-hot-one").children().get(i)).children().get(2)).text('￥' + lb.price)
+                    if (i > 3) {
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+    })
+
+    //开始加载
+    $(function() {
+        colthongs(25, 1, 1)
+    })
+
+    //参数，分类编号，页码，flag==1 ，不排序
+    function colthongs(cateid, pageNum, flag) {
+
+        var pageSize = 6;
+        $.ajax({
+            url: "http://localhost/onl/product/byCateidPageInfoClothings",
+            type: "get",
+            async: false,
+            data: {
+                cateid: cateid,
+                flag: flag,
+                pageNum: pageNum,
+                pageSize: pageSize
+            },
+            success: function(respData) {
+
+                if (respData.code == 200) {
+
+                    $('#sg-list-clearfix-one').empty();
+                    for (let lb of respData.data.productPageInfo.list) {
+
+                        $('#sg-list-clearfix-one').append(' <div class="col col-3" id="cateidnew" name="' + lb.cateid + '">' +
+                            '<div class="item" >' +
+                            ' <div class="inner">' +
+                            '  <a href="http://localhost/goods-detail.html?productid=' + lb.proid + '"><img class="figure" src="http://192.168.1.92:8080/img/mainImg/' + lb.mainimage + '" alt="" /></a>' +
+                            '<a href="http://localhost/goods-detail.html?productid=' + lb.proid + '"><div class="name">' + lb.pname + '   ' + lb.detail + '</div><div class="price">' + lb.price + '元</div></a>' +
+                            '<a class="act" onclick="addCart()" id="asdc" name="' + lb.proid + '" href="javascript:void(0);"  ><i class="iconfont icon-cart"></i>加入购物车</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>')
+                    }
+                    let pis = respData.data.productPageInfo.pages;
+                    $('#pages-one').empty();
+                    $('#pages-one').append('<a  id="shangyiye" href="javascript:void(0);" name="' + flag + '" b="' + respData.data.productPageInfo.prePage + '" value="' + cateid + '" class="page prev" onclick="pagechangepre()">上一页</a>')
+
+                    if (pis > 1) {
+                        for (var i = 1; i <= pis; i++) {
+                            if (i < 5) {
+                                $('#pages-one').append('<a class="page" href="javascript:void(0);" onclick="colthongs(' + cateid + ',' + i + ')">' + i + '</a>')
+                            } else {
+                                $('#pages-one').append('<span>....</span>')
+                                $('#pages-one').append('<a class="page" href="javascript:void(0);" onclick="colthongs(' + cateid + ',' + pis + ')">' + pis + '</a>')
+                                break;
+                            }
+                        }
+                    } else {
+                        $('#pages-one').append('<a class="page" href="javascript:void(0);" onclick="colthongs(' + cateid + ',' + pis + ')">' + pis + '</a>')
+                    }
+
+                    $('#pages-one').append('<a  id="xiayiye" name="' + flag + '" href="javascript:void(0);"  b="' + respData.data.productPageInfo.nextPage + '" c="' + respData.data.productPageInfo.pages + '" value="' + cateid + '" class="page next" onclick="pagechangenext()">下一页</a>')
+
+                    let pageNum = respData.data.productPageInfo.pageNum;
+                    $($('#pages-one').children().get(pageNum)).css('background-color', "red")
+
+                }
+            }
+        })
+    }
+
+    function pagechangepre() {
+
+        let prePage = $('#shangyiye').attr('b');
+        if (prePage == 0) {
+            alert("已经是第一页了！！")
+        }
+
+        let cateid = $('#shangyiye').attr("value");
+        let flag = $('#shangyiye').attr('name')
+        if (prePage != 0) {
+            colthongs(cateid, prePage, flag);
+        }
+    }
+
+    function pagechangenext() {
+
+        let nextPage = $('#xiayiye').attr('b');
+
+        let pages = $('#xiayiye').attr('c');
+        let cateid = $('#xiayiye').attr("value");
+        let flag = $('#xiayiye').attr('name')
+
+        if (nextPage != 0) {
+            colthongs(cateid, nextPage, flag);
+        }
+        if (nextPage == 0) {
+            alert("已经是最后一页了！！！")
+        }
+
+    }
+    //销量 排序
+    function xiaoLiang() {
+        var cateidnow = $('#cateidnew').attr("name")
+        colthongs(cateidnow, 1, 1);
+
+    }
+
+    function priceAsc() {
+        var cateidnow = $('#cateidnew').attr("name")
+
+        colthongs(cateidnow, 1, 2);
+    }
+
+    function priceDesc() {
+
+        var cateidnow = $('#cateidnew').attr("name")
+
+        colthongs(cateidnow, 1, 3);
+    }
+
+    function appelone() {
+        colthongs(25, 1, 1);
+    }
+
+    function appeltwo() {
+        colthongs(22, 1, 1);
+    }
+
+    function appelthree() {
+        colthongs(23, 1, 1);
+    }
+
+    function appelfour() {
+        colthongs(24, 1, 1);
+    };
+
+    getCartNums();
+
+    function getCartNums() {
+        $.ajax({
+            headers: {
+                token
+            },
+            url: base + "/cart/findNumber",
+            success: function(res) {
+                $("#cartNums").html(res.data.nums);
+                console.log("更新购物车数量成功:" + res.data.nums)
+            }
+        })
+    };
+
+    function addCart() {
+        if (localStorage.getItem("token") == null || localStorage.getItem("token") === "") {
+            location.href = "login.html"
+        } else {
+            var productid = $("#asdc").attr("name");
+            $.ajax({
+                headers: {
+                    token
+                },
+                url: base + "/cart/save",
+                type: "POST",
+                async: false,
+                data: {
+                    quantity: 1,
+                    proid: productid,
+                    success: function(data) {
+                        alert("成功添加" + 1 + "件商品")
+                    }
+                }
+            })
+            getCartNums();
+        }
+    }
+</script>
+
+</html>

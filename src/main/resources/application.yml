@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mysql:///electricity
+  thymeleaf:
+    cache: false
+server:
+  port: 8080
+
+# ES配置
+#  Elasticsearch:
+#      uris: http://116.205.177.123:9200
+
+# Redis配置
+#  redis:
+#      password: h2Pxayf@R4
+#      port: 6379
+#      host: 116.205.177.75
+
+# RabbitMQ配置
+
+#  rabbitmq:
+#    addresses: 116.205.177.123
+#    username: admin
+#    password: '#4123213'
+#    virtual-host: /test
+#    publisher-returns: true
+
+# MyBatis-Plus配置
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+#oss 文件名:zx

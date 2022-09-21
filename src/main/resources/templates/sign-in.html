@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>注册</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <style>
+        .tel-error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!--头部-->
+    <div class="login-header">
+        <div class="wrapper">
+            <a href="" class="logo">
+                <img src="/img/logo3.png" alt="" />
+            </a>
+            <div class="zp">
+                <span class="ico"></span>
+                <div>正品保障</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wrap">
+        <div class="wrapper">
+            <div class="center-box">
+                <form action="" method="">
+                    <div class="box-hd">
+                        <span class="tit">用户注册</span>
+                        <a href="login.html">账号登陆</a>
+                    </div>
+                    <label class="txtin-box">
+                        <input class="txtin" type="text" id="username" placeholder="用户名" />
+                    </label>
+                    <label class="txtin-box">
+                        <input class="txtin" type="text" id="utel" placeholder="手机" />
+                        <div class="tel-error" id="telError">请输入正确的手机号!</div>
+                    </label>
+                    <label class="txtin-box">
+                        <input class="txtin" type="password" id="passwd" placeholder="输入密码" />
+                    </label>
+                    <label class="txtin-box">
+                        <input class="txtin" type="password" id="passwd2" placeholder="确认密码" />
+                    </label>
+                    <label class="txtin-box">
+                        <input class="txtin" type="password" id="question" placeholder="请输入密保问题" />
+                    </label>
+                    <label class="txtin-box">
+                        <input class="txtin" type="password" id="answer" placeholder="请输入密保答案" />
+                    </label>
+                    <div class="clearfix tool">
+                        <label class="check"><input type="checkbox" name="" id="haveread" />我已阅读并同意智迈科技《<a href="">服务协议</a>》</label>
+                    </div>
+                    <input class="tj" value="注&ensp;册" />
+                    <div class="other-way clearfix">
+                        <a class="item first" href="">
+                            <img src="/img/login/weixin.jpg" alt="" class="ico" />
+                            <span class="label">微信</span>
+                        </a>
+                        <a class="item" href="">
+                            <img src="/img/login/qq.jpg" alt="" class="ico" />
+                            <span class="label">微信</span>
+                        </a>
+                        <a class="item" href="">
+                            <img src="/img/login/sina.jpg" alt="" class="ico" />
+                            <span class="label">微信</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018 备案号：皖ICP备123456789
+        <div class="authentication">
+            <a href=""><img src="/uploads/35.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/36.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/37.jpg" alt="" /></a>
+            <a href=""><img src="/uploads/38.jpg" alt="" /></a>
+        </div>
+    </div>
+</body>
+<script src="/js/jquery.js"></script>
+<!-- <link rel="stylesheet" href="js/icheck/style.css" />
+<script src="js/icheck/icheck.min.js"></script>
+<script src="js/global.js"></script> -->
+<script>
+    //提交按钮
+    $(".tj").click(function() {
+        //获取数据
+        var username = $("#username").val();
+        var utel = $("#utel").val();
+        var passwd = $("#passwd").val();
+        var passwd2 = $("#passwd2").val();
+        var question = $("#question").val();
+        var answer = $("#answer").val();
+        let tel = document.getElementById("utel"),
+            telReg = /^1[3-9]\d{9}$/;
+        //alert(e_sex);
+
+        //数据校验
+        if (passwd != passwd2) {
+            alert("确认密码和密码不一致 ");
+            return;
+        }
+
+        //判断手机号是否符合要求11位
+        if (telReg.test(tel.value)) {
+            telError.style.display = "none";
+        } else {
+            telError.style.display = "block";
+            return;
+        }
+
+        //判断是否勾选我已阅读
+        if ($("#haveread").is(":checked")) {
+            //发送请求  注册请求
+            $.ajax({
+                // headers: {
+                //     token: token
+                // },
+                url: "http://localhost/onl/user/register",
+                type: "post",
+                data: {
+                    username: username,
+                    passwd: passwd,
+                    utel: utel,
+                    question: question,
+                    answer: answer
+                },
+                success: function(respTxt) {
+                        alert(111);
+                        if (respTxt.code == 1003) {
+                            alert(respTxt.message)
+                            return;
+                        }
+                        alert("注册成功！");
+                        location.href = "login.html"
+                    }
+                    //允许跨域
+                    // crossDomain: true,
+                    // xhrFields: {
+                    //     withCredentials: true
+                    // }
+            });
+        } else {
+            alert("请先阅读服务协议并勾选！");
+            return;
+        }
+    });
+</script>
+<!-- <script>
+    $('.check input').iCheck({
+        checkboxClass: 'sty1-checkbox'
+    });
+</script> -->
+
+</html>

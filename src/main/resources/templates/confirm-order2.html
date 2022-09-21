@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>确认订单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/cart.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/layuimini.css">
+    <link rel="stylesheet" href="/static/lib/layui-v2.5.5/css/layui.css">
+    <style>
+        .col-3 {
+            width: 25%;
+        }
+    </style>
+</head>
+<script src="/public.js"></script>
+
+<body class="graybg-theme">
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="shangjia.html">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" onclick="personal()">个人中心<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="uc-msg.html">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a onclick="logout()">退出</a></div>
+                <span class=""></span>
+                <div class="cart"><em></em><a onclick="goCart()">购物车<span class="txt-theme" id="cartNums">0</span>件</a></div>
+                <div class="order"><em></em><a onclick="ucorder()">我的订单</a></div>
+                <div class="fav"><em></em><a href="uc-fav.html">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-header wrapper">
+        <div class="logo">
+            <a href="index.html"><img src="/img/logo.png" alt="logo" /></a>
+        </div>
+        <div class="step-box">
+            <div class="row">
+                <div class="step first active col-3">
+                    <span class="num">1</span><span class="line"></span><span class="label">我的购物车</span>
+                </div>
+                <div class="step active col-3">
+                    <span class="num">2</span><span class="line"></span><span class="label">确认订单信息</span>
+                </div>
+                <div class="step col-3">
+                    <span class="num">3</span><span class="line"></span><span class="label">选择支付方式</span>
+                </div>
+                <div class="step last col-3">
+                    <span class="num">4</span><span class="line"></span><span class="label">完成付款</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头部-->
+
+    <div class="wrapper confirm-wrap">
+        <div class="confirm-tit">
+            <span class="tit">选择收货地址 :</span>
+        </div>
+        <div class="confirm-address clearfix">
+            <div class="newcol">
+
+            </div>
+            <div class="col col-4">
+                <a class="item va-m-box ta-c add">
+                    <div class="add-new" style="display: block; margin: 25px; vertical-align: middle; font-size: 14px; color: #b2b2b2; text-align: center;">
+                        <span class="ico" style="display: block; color: #c9c9c9;"><i  class="iconfont icon-tianjia" style="line-height: 1; font-size: 54px;"></i></span>
+                        <div class="label" style="display: block; margin: 10px 0 5px;">
+                            添加收货地址</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="confirm-address-bar" style="display: none;">
+            <a href="javascript:;" class="drop" data-action="drop">显示全部地址</a>
+        </div>
+
+        <div class="confirm-tit">
+            <span class="tit">发票 :</span>
+        </div>
+        <div class="control-group">
+            <div class="hd">
+                发票抬头：
+            </div>
+            <div class="bd">
+                <select class="ui-txtin" name="" id=""><option value="">个人</option></select>
+                <input class="ui-txtin" style="width: 300px;" type="text" name="" id="" />
+            </div>
+        </div>
+        <div class="confirm-tit">
+            <span class="tit">确认商品信息:</span>
+            <div class="right"><a class="back" href="cart.html">返回购物车></a></div>
+        </div>
+        <div class="confirm-goods">
+            <div class="confirm-goods-hd clearfix">
+                <div class="col col1">店铺：拼夕夕商城</div>
+                <div class="col col2">单价（元）</div>
+                <div class="col col3">数量</div>
+                <div class="col col4">小计（元）</div>
+            </div>
+            <div class="confirm-goods-bd">
+                <div class="goods clearfix" id="product">
+                    <!-- <div class="col col1" >
+                        <img id="promainimg" src="" alt="">
+                        <div class="info">
+                            <div id="proname" class="name"></div>
+                            <div id="prometa" class="meta"><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div id="col2" class="col col2"></div>
+                    <div id="col3" class="col col3"></div>
+                    <div id="col4" class="col col4"></div>-->
+                </div>
+            </div>
+            <div class="confirm-goods-ft clearfix">
+                <div class="fl"><span class="vm-ib">买家留言： </span><textarea class="ui-txtin" style="width: 410px;" name="" placeholder="在此输入给商家的留言"></textarea></div>
+                <div class="fr">店铺合计(免运费): <span id="itemsum1">¥1922.00</span> </div>
+            </div>
+        </div>
+        <div class="confirm-total">
+            <div class="box">
+                <div class="item">应付总额：<strong id="itemsum"> ¥ 1936.00</strong></div>
+                <!-- <a class="ui-btn-theme go-charge" href="pay.html">去结算</a> -->
+                <button class="ui-btn-theme go-charge">去结算</button>
+            </div>
+        </div>
+    </div>
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+    <!--添加地址-->
+    <div id="addressform" style="display:none" class="layer-address">
+        <form action="" class="layui-form">
+            <div class="control-group">
+                <div class="hd">
+                    收货人姓名：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="receivername">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="hd">
+                    联系电话：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="receiverphone">
+                </div>
+                <div class="hd">或固定电话：</div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="">
+                </div>
+            </div>
+            <!--    <div class="control-group">
+                <div class="hd vat">
+                    所在地区：
+                </div>
+                <div class="bd">
+                    &lt;!&ndash; <select class="ui-txtin ui-txtin-thin" style="width: 180px;" name=""> &ndash;&gt;
+                    <select class="ui-txtin ui-txtin-thin" style="width: 0px;" name="">
+                        &lt;!&ndash; <option value="">选择省</option> &ndash;&gt;
+                        <input class="ui-txtin ui-txtin-thin" style="width: 535px;" type="text" name="" id="receiverprovice" placeholder="请填写地区">
+                    </select>
+                    <div class="mt10">
+                        <input class="ui-txtin ui-txtin-thin" style="width: 560px;" type="text" name="" id="receiveraddress" placeholder="请填写具体地址，不需要重复填写省/市/区">
+                    </div>
+                </div>
+            </div>-->
+            <!--   <div class="control-group">
+                <div class="hd vat">
+                    邮政编码：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="">
+                </div>
+            </div>-->
+            <!--三级下拉框-->
+            <div class="control-group  layuimini-container layuimini-page-anim">
+                <div class="layuimini-main">
+                    <div class="layui-form-item" id="area-picker">
+                        <div class="layui-form-label">网点地址</div>
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <select name="province" id="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+                                    <option value="">请选择省</option>
+                                </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <select name="city" id="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+                                    <option value="">请选择市</option>
+                                </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <select name="county" id="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
+                                    <option value="">请选择区</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="mt10">
+                        <input class="ui-txtin ui-txtin-thin" style="width: 560px;" type="text" name="" id="receiveraddress" placeholder="请填写具体地址，不需要重复填写省/市/区">
+                    </div>
+                </div>
+            </div>
+            <div class="control-bottom clearfix">
+                <!-- <a href="" class="fl btn ui-btn-theme" id="baocun">保存</a><a href="" class="fr btn ui-btn cancle">取消</a> -->
+                <a class="fl btn ui-btn-theme" id="baocun">保存</a><a href="" class="fr btn ui-btn cancle">取消</a>
+            </div>
+
+        </form>
+    </div>
+
+    <!--修改地址-->
+    <div id="addressform2" style="display:none" class="layer-address">
+        <form action="">
+            <div class="control-group">
+                <div class="hd">
+                    收货人姓名：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="receivername2">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="hd">
+                    联系电话：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="receiverphone2">
+                </div>
+                <div class="hd">或固定电话：</div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="hd vat">
+                    所在地区：
+                </div>
+                <div class="bd">
+                    <!-- <select class="ui-txtin ui-txtin-thin" style="width: 180px;" name=""> -->
+                    <select class="ui-txtin ui-txtin-thin" style="width: 0px;" name="">
+                        <!-- <option value="">选择省</option> -->
+                        <input class="ui-txtin ui-txtin-thin" style="width: 535px;" type="text" name="" id="receiverprovice2" placeholder="请填写地区">
+                    </select>
+                    <div class="mt10">
+                        <input class="ui-txtin ui-txtin-thin" style="width: 560px;" type="text" name="" id="receiveraddress2" placeholder="请填写具体地址，不需要重复填写省/市/区">
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="hd vat">
+                    邮政编码：
+                </div>
+                <div class="bd">
+                    <input class="ui-txtin ui-txtin-thin" style="width: 200px;" type="text" name="" id="">
+                </div>
+            </div>
+            <div class="control-bottom clearfix">
+                <!-- <a href="" class="fl btn ui-btn-theme" id="baocun">保存</a><a href="" class="fr btn ui-btn cancle">取消</a> -->
+                <a class="fl btn ui-btn-theme" id="baocun2">保存</a><a href="" class="fr btn ui-btn cancle">取消</a>
+            </div>
+        </form>
+    </div>
+    <!--三级下拉框-->
+    <!-- <div class="layuimini-container layuimini-page-anim">
+        <div class="layuimini-main">
+            <form class="layui-form" action="" style="padding:20px;">
+                <div class="layui-form-item" id="area-picker">
+                    <div class="layui-form-label">网点地址</div>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        <select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+                            <option value="">请选择省</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        <select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+                            <option value="">请选择市</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        <select name="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
+                            <option value="">请选择区</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <pre class="layui-code">
+        </pre>
+        </div>
+    </div>-->
+</body>
+
+<script src="/js/jquery.js"></script>
+<link rel="stylesheet" href="/js/icheck/style.css" />
+<script src="/js/icheck/icheck.min.js"></script>
+<script src="/js/layer/layer.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    var total = 0; //总金额
+    var url = decodeURI(window.location.href).split('='); //截取url
+    // var numbers = url[1];
+    //商品详情页往这传商品id和商品数量
+    var numbers = getQueryVariable("nums");
+    //购物车页往这传购物车的id 多个
+    var ids = getQueryVariable("ids");
+    console.log(ids);
+    //这里不使用自带按钮，因为设计按钮较特殊，不准备作为通用样式
+    $('.confirm-address .edit,.confirm-address .add').on('click', function() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-seaing',
+            title: '标题',
+            area: ['800px', '400px'],
+            content: $('#addressform')
+                //btn: ['按钮一', '按钮二']
+        });
+    });
+    $(document.body).on('click', '.layer-address .cancle', function() {
+        layer.closeAll();
+        return false;
+    })
+
+    //
+    function juggeAddressNum() {
+        var col = $('.confirm-address .col'),
+            cH = col.height();
+        $('.confirm-address').height(cH)
+        if (col.length > 3) {
+            $('.confirm-address-bar').show();
+        } else {
+            $('.confirm-address-bar').hide();
+        }
+    }
+    juggeAddressNum();
+    zAction.add({
+        'drop': function() {
+            $('.confirm-address').height('auto')
+            var h = $('.confirm-address').height()
+            juggeAddressNum();
+            $('.confirm-address').animate({
+                height: h
+            }, 300);
+            $(this).parent().remove();
+        }
+    });
+    //获得token
+    var token = localStorage.getItem("token");
+    queryall();
+    //展示收货信息
+    function queryall() {
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            async: false,
+            url: "http://localhost/onl/shopping/queryAllByUid",
+            type: "get",
+            // data:{pageNum:pageNum,pageSize:"6"},
+            success: function(respTxt) {
+                for (var shopping of respTxt) {
+                    console.log("shid:" + shopping.shid);
+                    var div1 = $("<div class='col col-4'></div>");
+                    var div2 = $("<div class='item '></div>");
+                    var div3 = $("<div class='action'></div>");
+                    var input1 = $("<input  style='display: none' class='shid' name='shid' value='" + shopping.shid + "'>");
+                    var a1 = $("<a class='edit1' href='javascript:;'>修改</a>");
+                    var div4 = $("<div class='info'></div>");
+                    var div5 = $("<div class='ellipsis'><img src='img/ico/user.jpg' alt=''/>" + shopping.receiverprovice + "（" + shopping.receivername + " 收）" + "</div></div>");
+                    var div6 = $("<div class='ellipsis'><img src='img/ico/dizhi.jpg' alt=''/>" + shopping.receiveraddress + "</div>");
+                    var div7 = $("<div class='ellipsis'><img src='img/ico/tel.jpg' alt=''/>" + shopping.receiverphone + "</div>");
+
+                    $(".newcol").append(div1);
+                    div1.append(div2);
+                    div2.append(div3);
+                    div3.append(input1);
+                    div3.append(a1);
+                    div2.append(div4);
+                    div4.append(div5);
+                    div4.append(div6);
+                    div4.append(div7);
+
+                }
+            }
+        })
+    };
+
+    //添加收货信息
+    $("#baocun").on('click', function() {
+        var receivername = $("#receivername").val();
+        var receiverphone = $("#receiverphone").val();
+        /*var receiverprovice = $("#receiverprovice").val();*/
+        var receiveraddress = $("#receiveraddress").val();
+        var provice = $("#province").val();
+        var city = $("#city").val();
+        var county = $("#county").val();
+        var receiverprovince = "" + provice + "" + city + "" + county
+        console.log("网点地址：" + receiverprovince)
+        if (receivername == null || receivername === '') {
+            alert("请输入收货人");
+            return false;
+        };
+        if (receiverphone == null || receiverphone === '') {
+            alert("请输入收货人联系方式");
+            return false;
+        };
+        /*    if (receiverprovice == null || receiverprovice == '') {
+                alert("请输入收货人地区");
+                return false;
+            };*/
+        if (receiveraddress == null || receiveraddress === '') {
+            alert("请输入收货人详细地址");
+            return false;
+        };
+
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            url: "http://localhost/onl/shopping/addAddress",
+            type: "post",
+            data: {
+                receivername: receivername,
+                receiverphone: receiverphone,
+                receiverprovice: receiverprovince,
+                receiveraddress: receiveraddress
+            },
+            success: function(respText) {
+                alert(respText.message);
+                layer.closeAll();
+                $(".newcol").empty();
+                queryall();
+            }
+        });
+    });
+
+
+    //小计
+
+    //商品信息展示
+    // document.getElementById("promainimg").src = "uploads/11.jpg";
+    /*  let promainimg = document.getElementById("promainimg");
+      $.ajax({
+          headers: {
+              tokenstring: token
+          },
+          url: "http://localhost/onl/product/queryproductById",
+          type: "get",
+          data: {
+              proid: 20
+          },
+          success: function(respText) {
+              promainimg.src = "http://192.168.1.92:8080/img/mainImg/" + respText.mainimage;
+              $("#proname").html(respText.pname);
+              $("#prometa").html(respText.detail);
+              $("#col2").html(respText.price);
+              $("#col3").html(numbers);
+              $("#col4").html(numbers * respText.price);
+              $("#itemsum1").html(numbers * respText.price);
+              $("#itemsum").html(numbers * respText.price);
+          }
+      });*/
+
+    function queryproductById(id) {
+        // let promainimg = document.getElementById("promainimg");
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            async: false,
+            url: "http://localhost/onl/product/queryproductById",
+            type: "get",
+            data: {
+                proid: id
+            },
+            success: function(res) {
+                var div456 = ("<div class=\"col col1\" >\n" +
+                    "                        <img id=\"promainimg\" src='" + "http://192.168.1.92:8080/img/mainImg/" + res.mainimage + "' alt=\"\">\n" +
+                    "                        <div class=\"info\">\n" +
+                    "                            <div id=\"proname\" class=\"name\">" + res.pname + "</div>\n" +
+                    "                            <div id=\"prometa\" class=\"meta\"><span>" + res.detail + "</span></div>\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    <div id=\"col2\" class=\"col col2\">" + res.price + "</div>\n" +
+                    "                    <div id=\"col3\" class=\"col col3\">" + numbers + "</div>\n" +
+                    "                    <div id=\"col4\" class=\"col col4\">" + numbers * res.price + "</div>")
+                total = numbers * res.price;
+                $("#product").append(div456);
+                /* promainimg.src = "http://192.168.1.92:8080/img/mainImg/" + respText.mainimage;
+                 $("#proname").html(respText.pname);
+                 $("#prometa").html(respText.detail);
+                 $("#col2").html(respText.price);
+                 $("#col3").html(numbers);
+                 $("#col4").html(numbers * respText.price);
+                 $("#itemsum1").html(numbers * respText.price);
+                 $("#itemsum").html(numbers * respText.price);*/
+            }
+        });
+    }
+
+    function queryCartByCartId(id) {
+        $.ajax({
+            async: false,
+            url: "http://localhost/onl/cart/findCartByCartId",
+            type: "get",
+            data: {
+                cardId: id
+            },
+            success: function(res) {
+                var cart = res.data.cart;
+                total = total + cart.product.price * cart.quantity
+                var div22 = $(" <div class=\"goods clearfix\">\n" +
+                    "                    <div class=\"col col1\">\n" +
+                    "                        <img id=\"promainimg\" src='" + "http://192.168.1.92:8080/img/mainImg/" + cart.product.mainimage + "' alt=\"\">\n" +
+                    "                        <div class=\"info\">\n" +
+                    "                            <div id=\"proname\" class=\"name\">" + cart.product.pname + "</div>\n" +
+                    "                            <div id=\"prometa\" class=\"meta\"><span>" + cart.product.detail + "</span></div>\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    <div id=\"col2\" class=\"col col2\">" + cart.product.price + "</div>\n" +
+                    "                    <div id=\"col3\" class=\"col col3\">" + cart.quantity + "</div>\n" +
+                    "                    <div id=\"col4\" class=\"col col4\">" + cart.product.price * cart.quantity + "</div>\n" +
+                    "                </div>\n" +
+                    "            </div>\n")
+                $("#product").append(div22);
+            },
+        });
+    }
+    //商品信息展示
+    // document.getElementById("promainimg").src = "uploads/11.jpg";
+    //如果是商品详情页来的 渲染
+    if (numbers !== false) {
+        queryproductById(1);
+        $("#itemsum").html(total)
+        $("#itemsum1").html(total)
+    } else {
+        const idList = ids.split(",");
+        for (let i = 0; i < idList.length; i++) {
+            console.log(idList[i]);
+            queryCartByCartId(idList[i]);
+        }
+        $("#itemsum1").html(total)
+        $("#itemsum").html(total)
+    }
+    //如果是购物车页来的 渲染
+
+    //选择默认收货地址
+    var dizhi;
+    $(".item").click(function() {
+        $(".item").removeClass().addClass("item");
+        $(this).removeClass().addClass("item active");
+        dizhi = $(this).find("input[name='shid']").val();
+        // console.log($(this).find("input[name='shid']").val());
+    });
+
+    //去结算按钮
+    $(".go-charge").click(function() {
+        if (dizhi == undefined || dizhi == null) {
+            alert("请选择收货人");
+            return;
+        }
+        var payment = $("#itemsum").html();
+        const idList = ids.split(",");
+        for (let i = 0; i < idList.length; i++) {
+
+        }
+
+        //生成订单
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            url: "http://localhost/onl/orders/addOrders",
+            type: "post",
+            data: {
+                shopingid: dizhi,
+                payment: payment
+            },
+            success: function(respText) {
+                var orderid = respText;
+
+                //生成子订单表
+                $.ajax({
+                    headers: {
+                        tokenstring: token
+                    },
+                    url: "http://localhost/onl/ordritem/addOrdritem",
+                    type: "post",
+                    data: {
+                        orderid: orderid,
+                        proid: 20,
+                        quantity: numbers,
+                        totalprice: payment,
+                    },
+                    success: function(respText2) {
+                        //返回子订单编号
+                        var oitemid = respText2;
+                    }
+                });
+
+                //生成支付表
+                $.ajax({
+                    headers: {
+                        tokenstring: token
+                    },
+                    url: "http://localhost/onl/Payinfo/addPayinfo",
+                    type: "post",
+                    data: {
+                        orderid: orderid,
+                    },
+                    success: function(respText1) {
+                        var payid = respText1;
+                        //跳转到支付完成页面
+                        location.href = "pay.html?shid=" + dizhi + "&proid=" + 20 + "&moneysum=" + $("#itemsum").html() + "&orderid=" + orderid + "&numbers=" + numbers + "&payid=" + payid;
+                    }
+                });
+
+            }
+        });
+
+    });
+
+
+    //修改地址
+    $(".newcol").on('click', ".edit1", function() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-seaing',
+            title: '标题',
+            area: ['720px', 'auto'],
+            content: $('#addressform2')
+                //btn: ['按钮一', '按钮二']
+        });
+
+        var shid = $(this).prev().val()
+            // alert(shid);
+
+        //收货信息回填
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            url: "http://localhost/onl/shopping/queryOneByShid",
+            type: "get",
+            data: {
+                shid: shid
+            },
+            success: function(respText) {
+                // alert(respText.receivername);
+                $("#receivername2").val(respText.receivername);
+                $("#receiverphone2").val(respText.receiverphone);
+                $("#receiverprovice2").val(respText.receiverprovice);
+                $("#receiveraddress2").val(respText.receiveraddress);
+            }
+        });
+
+
+        $("#baocun2").on('click', function() {
+            var receivername = $("#receivername2").val();
+            var receiverphone = $("#receiverphone2").val();
+            var receiverprovice = $("#receiverprovice2").val();
+            var receiveraddress = $("#receiveraddress2").val();
+
+            if (receivername == null || receivername == '') {
+                alert("请输入收货人");
+                return false;
+            };
+            if (receiverphone == null || receiverphone == '') {
+                alert("请输入收货人联系方式");
+                return false;
+            };
+            if (receiverprovice == null || receiverprovice == '') {
+                alert("请输入收货人地区");
+                return false;
+            };
+            if (receiveraddress == null || receiveraddress == '') {
+                alert("请输入收货人详细地址");
+                return false;
+            };
+
+            $.ajax({
+                headers: {
+                    tokenstring: token
+                },
+                url: "http://localhost/onl/shopping/updateAddress",
+                type: "post",
+                data: {
+                    shid: shid,
+                    receivername: receivername,
+                    receiverphone: receiverphone,
+                    receiverprovice: receiverprovice,
+                    receiveraddress: receiveraddress
+                },
+                success: function(respText) {
+                    alert(respText.message);
+                    layer.closeAll();
+                    $(".newcol").empty();
+                    queryall();
+                }
+            });
+        });
+    });
+</script>
+
+<!---->
+<script src="/static/js/jquery-3.6.0.js" charset="utf-8"></script>
+<script src="/static/lib/jq-module/paigusu.min.js" charset="utf-8"></script>
+<script src="/static/lib/layui-v2.5.5/layui.js"></script>
+<script src="/static/js/lay-config.js"></script>
+<script src="/static/js/lay-module/layarea/layarea.js"></script>
+
+<script>
+    layui.use(['layer', 'form', 'layarea'], function() {
+        var layer = layui.layer,
+            form = layui.form,
+            layarea = layui.layarea;
+        layarea.render({
+            elem: '#area-picker',
+            change: function(res) {
+                //选择结果
+                console.log(res);
+            }
+        });
+
+    });
+
+    getCartNums();
+
+    function getCartNums() {
+        $.ajax({
+            headers: {
+                token
+            },
+            url: base + "/cart/findNumber",
+            success: function(res) {
+                $("#cartNums").html(res.data.nums);
+                console.log("更新购物车数量成功:" + res.data.nums)
+            }
+        })
+    };
+</script>
+
+</html>

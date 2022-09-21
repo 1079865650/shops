@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>支付</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/cart.css" rel="stylesheet" />
+    <style>
+        .col-3 {
+            width: 25%;
+        }
+    </style>
+</head>
+
+
+<body class="graybg-theme">
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="shangjia.html">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" href="uc.html">个人中心<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="uc-msg.html">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a onclick="logout()">退出</a></div>
+                <span class=""></span>
+                <div class="cart"><em></em><a onclick="goCart()">购物车<span class="txt-theme" id="cartNums">0</span>件</a></div>
+                <div class="order"><em></em><a onclick="ucorder()">我的订单</a></div>
+                <div class="fav"><em></em><a href="uc-fav.html">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-header wrapper">
+        <div class="logo">
+            <a href="index.html"><img src="/img/logo.png" alt="logo" /></a>
+        </div>
+        <div class="step-box">
+            <div class="row">
+                <div class="step first active col-3">
+                    <span class="num">1</span><span class="line"></span><span class="label">我的购物车</span>
+                </div>
+                <div class="step active col-3">
+                    <span class="num">2</span><span class="line"></span><span class="label">确认订单信息</span>
+                </div>
+                <div class="step active col-3">
+                    <span class="num">3</span><span class="line"></span><span class="label">选择支付方式</span>
+                </div>
+                <div class="step last col-3">
+                    <span class="num">4</span><span class="line"></span><span class="label">完成付款</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头部-->
+
+    <div class="wrapper">
+        <div class="pay-wrap">
+            <div class="order-result">
+                <div class="section clearfix">
+                    <img src="/img/ico/order-success.jpg" class="ico" />
+                    <div class="titbox">
+                        <div class="tit">订单提交成功，应付金额 <span id="moneysum" style="display: inline-block;"> XXXX.XX</span>元</div>
+                        <div class="stit">订单号：211171362891205<span id="orderid1" style="display: inline-block;padding-right: 10px;">00</span> 请您在 1 日 内完成支付，否则订单会被自动取消</div>
+                    </div>
+                    <div class="mt20">
+                        <!-- <div class="meta">
+                            <div class="hd">商品</div>
+                            <div class="bd"><span id="proname1" style="display: inline-block;">纤佳乐破壁料理机 2.5升</span> <span id="prometa1" style="display: inline-block;">西瓜红型号:QJL-PB921 西瓜红</span>* <span id="numbers1" style="display: inline-block;">2</span> </div>
+                        </div> -->
+                        <div class="meta">
+                            <div class="hd">收货地址</div>
+                            <div class="bd"><span id="receiverprovice3" style="display: inline-block;padding-right: 10px;">安徽 合肥</span> <span id="receiveraddress3" style="display: inline-block;">瑶海区东方商城 (提现 收) 13666666666</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pay-wrap-tit">
+            在线支付
+        </div>
+        <div class="pay-wrap">
+            <div class="pay-way">
+                <div class="row">
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" checked name="a" /><img src="/img/pay/zfb.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img src="/img/pay/weixin.jpg" /></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-3">
+                        <label><input class="check" type="radio"  name="a" /><img class="bd" src="/img/pay/zgyh.jpg"  /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/jsyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/nyyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/gsyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/jtyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/zsyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/yzcxyh.jpg" /></label>
+                    </div>
+                    <div class="col col-3">
+                        <label><input class="check" type="radio" name="a" /><img class="bd" src="/img/pay/xyyy.jpg" /></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-panel">
+            <!-- <a href="pay-success.html" class="go-next ui-btn-theme">下一步</a> -->
+            <button class="go-next ui-btn-theme">支付</button>
+        </div>
+    </div>
+
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+<script src="/js/jquery.js"></script>
+<link rel="stylesheet" href="/js/icheck/style.css" />
+<script src="/js/icheck/icheck.min.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    $('.check').iCheck({
+        radioClass: 'sty1-radio'
+    });
+    //获得token
+    var token = localStorage.getItem("token");
+
+    //获取URL里面的参数方法
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+    //商品详情页来 一种商品
+    var shid = getQueryVariable("shid");
+    var proid = getQueryVariable("proid");
+    var moneysum = getQueryVariable("moneysum");
+    var orderid = getQueryVariable("orderid");
+    var numbers = getQueryVariable("numbers");
+    var payid = getQueryVariable("payid");
+
+    //购物车页面来 多种商品
+    var ids = getQueryVariable("ids");
+
+
+
+    //应付金额
+    $("#moneysum").html(moneysum);
+
+    //商品件数
+    $("#numbers1").html(numbers);
+
+    //订单编号
+    $("#orderid1").html(orderid);
+
+    //商品信息简介
+    // $.ajax({
+    //     headers: {
+    //         tokenstring: token
+    //     },
+    //     url: "http://localhost/onl/product/byproid",
+    //     type: "get",
+    //     data: {
+    //         proid: proid
+    //     },
+    //     success: function(respText) {
+    //     var resp1 = respText.data.product;
+    //         $("#proname1").html(resp1.pname);
+    //         $("#prometa1").html(resp1.detail);
+    //     }
+    // });
+
+
+    //收货地址展示
+    $.ajax({
+        headers: {
+            tokenstring: token
+        },
+        url: "http://localhost/onl/shopping/queryOneByShid",
+        type: "get",
+        data: {
+            shid: shid
+        },
+        success: function(respText) {
+            $("#receiverprovice3").html(respText.receiverprovice);
+            $("#receiveraddress3").html(respText.receiveraddress + respText.receiverphone);
+        }
+    });
+
+
+
+    //去结算按钮
+    $(".go-next").click(function() {
+
+        var flag = window.confirm("你确定要购买这些物品吗？");
+        if (!flag) {
+            return;
+        }
+
+        //更新订单
+        $.ajax({
+            headers: {
+                tokenstring: token
+            },
+            url: "http://localhost/onl/orders/payOrders",
+            type: "post",
+            data: {
+                orderid: orderid,
+            },
+            success: function(respText) {
+                if (respText.code == 1010) {
+                    alert(respText.message);
+                    return;
+                }
+
+                //更新支付表
+                $.ajax({
+                    headers: {
+                        tokenstring: token
+                    },
+                    url: "http://localhost/onl/Payinfo/updatePayinfo",
+                    type: "post",
+                    data: {
+                        payid: payid,
+                    },
+                    success: function(respText1) {
+                        if (respText1.code == 1014) {
+                            alert(respText1.message);
+                            return;
+                        }
+
+                        if (ids != false) {
+                            const idList = ids.split(",") //同时清空购物车
+                            for (let i = 0; i < idList.length; i++) {
+                                $.ajax({
+                                    url: "http://localhost/onl/cart/findCartByCartId",
+                                    type: "get",
+                                    data: {
+                                        cardId: idList[i]
+                                    },
+                                    success: function(res) {
+                                        var cart = res.data.cart;
+                                        var proid = cart.product.proid;
+                                        var quantity = cart.quantity;
+                                        $.ajax({
+                                            headers: {
+                                                tokenstring: token
+                                            },
+                                            url: "http://localhost/onl/product/updatesales",
+                                            type: "get",
+                                            data: {
+                                                proid: proid,
+                                                numbers: quantity
+                                            },
+                                            success: function(respText2) {
+                                                if (respText2.code == 1019) {
+                                                    alert(respText1.message);
+                                                    return;
+                                                }
+
+                                            }
+                                        });
+
+                                    },
+                                });
+
+                                $.ajax({
+                                    url: "http://localhost/onl/cart/delete",
+                                    type: "get",
+                                    data: {
+                                        id: idList[i]
+                                    },
+                                    success: function() {
+                                        console.log("jjj")
+                                    }
+                                })
+
+                            }
+
+
+                            //跳转到支付完成页面
+                            alert("支付成功");
+                            location.href = "pay-success.html";
+
+                        } else {
+                            //更新商品表(库存和销量)
+                            $.ajax({
+                                headers: {
+                                    tokenstring: token
+                                },
+                                url: "http://localhost/onl/product/updatesales",
+                                type: "get",
+                                data: {
+                                    proid: proid,
+                                    numbers: numbers
+                                },
+                                success: function(respText2) {
+                                    if (respText2.code == 1019) {
+                                        alert(respText1.message);
+                                        return;
+                                    }
+                                    //跳转到支付完成页面
+                                    alert(respText2.message);
+                                    location.href = "pay-success.html";
+                                }
+                            });
+                        }
+
+
+                    }
+                });
+
+            }
+        });
+    });
+
+    getCartNums();
+
+    function getCartNums() {
+        $.ajax({
+            headers: {
+                token
+            },
+            url: base + "/cart/findNumber",
+            success: function(res) {
+                $("#cartNums").html(res.data.nums);
+                console.log("更新购物车数量成功:" + res.data.nums)
+            }
+        })
+    };
+</script>
+
+</html>
