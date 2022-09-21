@@ -17,7 +17,7 @@ public class Route {
 
     @GetMapping("/")
     public String goIndex() {
-        return "index";
+        return "index-mz";
     }
 
     @GetMapping("/goLogin")
@@ -29,4 +29,6 @@ public class Route {
     public String goRegister(){
         return "sign-in";
     }
+
+
 }
