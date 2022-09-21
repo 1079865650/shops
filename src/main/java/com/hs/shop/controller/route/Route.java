@@ -26,14 +26,14 @@ public class Route {
     }
 
     @GetMapping("/register")
-    public String goRegister(){
+    public String goRegister() {
+        String a = "1";
         return "sign-in";
     }
 
 
-
     @GetMapping("/goSafe")
-    public String goSage(){
+    public String goSage() {
         return "uc-safe";
     }
 }
