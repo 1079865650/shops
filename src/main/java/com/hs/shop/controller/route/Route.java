@@ -36,4 +36,9 @@ public class Route {
     public String goSage() {
         return "uc-safe";
     }
+
+    @GetMapping("/goSafe")
+    public String goSage(){
+        return "uc-safe";
+    }
 }
