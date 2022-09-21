@@ -25,17 +25,17 @@ public class Route {
         return "login";
     }
 
+    @GetMapping("/goSafe")
+    public String goSage(){
+        return "uc-safe";
+    }
+
     @GetMapping("/register")
     public String goRegister() {
         String a = "1";
         return "sign-in";
     }
 
-
-    @GetMapping("/goSafe")
-    public String goSage() {
-        return "uc-safe";
-    }
 
 
 }
