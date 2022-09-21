@@ -17,6 +17,7 @@ public class Route {
 
     @GetMapping("/")
     public String goIndex() {
+        System.out.println("11");
         return "index";
     }
 
