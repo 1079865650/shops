@@ -24,4 +24,9 @@ public class Route {
     public String goLogin() {
         return "login";
     }
+
+    @GetMapping("/register")
+    public String goRegister(){
+        return "sign-in";
+    }
 }
