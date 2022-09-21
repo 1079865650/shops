@@ -24,4 +24,9 @@ public class Route {
     public String goLogin() {
         return "login";
     }
+
+    @GetMapping("/goSafe")
+    public String goSage(){
+        return "uc-safe";
+    }
 }
