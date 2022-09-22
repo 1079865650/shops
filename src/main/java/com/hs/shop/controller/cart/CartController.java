@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hs.shop.domain.Merchant;
 import com.hs.shop.domain.Product;
 import com.hs.shop.domain.ShopCat;
+import com.hs.shop.domain.User;
 import com.hs.shop.service.MerchantService;
 import com.hs.shop.service.ProductService;
 import com.hs.shop.service.ShopCatService;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +29,16 @@ public class CartController {
     private ProductService productService;
     @Autowired
     private MerchantService merchantService;
-
+    @Autowired
+    HttpServletRequest request;
     /*
     通过用户ID查询该用户下购物车(按店铺划分)
      */
-    @RequestMapping("/selectShoppingCat")
-    public String select(Integer userId, Model model){
+    @RequestMapping("/selectShoppingCart")
+    public String select(Model model){
+        // 从session中拿值,获取userId
+        User user = (User)request.getSession().getAttribute("user");
+        Integer userId = user.getId();
         // 通过用户ID查询购物车
         QueryWrapper<ShopCat> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",userId);
@@ -121,9 +128,13 @@ public class CartController {
     添加购物车
      */
     @RequestMapping("/addCart")
-    public void add(Integer userId, Integer productId, Integer count, Model model){
+    public String add(Integer productId, Integer count, Model model){
+        // 从session中拿值,获取userId
+        User user = (User)request.getSession().getAttribute("user");
+        Integer userId = user.getId();
         // 创建一个对象用来存储购物车信息
         ShopCat shopCat1 = new ShopCat();
+        shopCat1.setId(null);
         shopCat1.setUserId(userId);
         shopCat1.setProductId(productId);
         shopCat1.setCount(count);
@@ -136,7 +147,7 @@ public class CartController {
         if (shopCats.isEmpty()){
             shopCatService.save(shopCat1);
             model.addAttribute("mess","添加成功");
-            return;
+            return "/goods-detail.html";
         }
         // 购物车不为空,遍历购物车，判断购物车中商品id与要添加商品id是否相同
         for (ShopCat shopCat:shopCats){
@@ -149,31 +160,38 @@ public class CartController {
                 shopCat2.setCount(shopCat.getCount()+count);
                 shopCatService.updateById(shopCat2);
                 model.addAttribute("mess","添加成功");
-                return;
+                return "/goods-detail.html";
             }
         }
         // 购物车不为空,但没有此商品
         shopCatService.save(shopCat1);
         model.addAttribute("mess","添加成功");
+        return "/goods-detail.html";
     }
 
     /*
     删除购物车商品（单条数据）,通过商品id
      */
-    @RequestMapping("/detectCart")
+    @RequestMapping("/deleteCart")
     public String delect(Integer productId,Model model){
-        QueryWrapper<ShopCat> wrapper = new QueryWrapper<>();
-        wrapper.eq("product_id",productId);
-        boolean remove = shopCatService.remove(wrapper);
-        if (remove){
-            model.addAttribute("mess","删除成功");
-            return "forward:selectShoppingCat";
+        // 从session中拿值,获取userId
+        User user = (User)request.getSession().getAttribute("user");
+        Integer userId = user.getId();
+        // 判断商品是否存在，存在
+        if (productId!=null){
+            QueryWrapper<ShopCat> wrapper = new QueryWrapper<>();
+            wrapper.eq("user_id",userId)
+                    .eq("product_id",productId);
+            boolean remove = shopCatService.remove(wrapper);
+            if (remove){
+                model.addAttribute("mess","删除成功");
+                return "forward:selectShoppingCart";
+            }
+            model.addAttribute("mess","删除失败");
+            return "forward:selectShoppingCart";
         }
-        model.addAttribute("mess","删除失败");
-        return "forward:selectShoppingCat";
+        // 不存在
+        return null;
     }
 
-    /*
-
-     */
 }

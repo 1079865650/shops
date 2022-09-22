@@ -104,7 +104,7 @@
                         </td>
                         <td>
                             <div class="info-box">
-                                <img src="uploads/11.jpg" alt="">
+                                <img th:src="${cartMerchantProductVo.mainPhoto}" alt="图片失效"/>
                                 <div class="info">
                                     <div class="name"><span th:text="${cartMerchantProductVo.productName}"></span></div>
                                 </div>
@@ -114,13 +114,13 @@
                         <td>
                             <div class="mod-numbox cart-numbox" data-max="30">
                                 <span class="count-minus"></span>
-                                <input class="count-input" value="1" type="text" name="num" />
+                                <input class="count-input" th:value="${cartMerchantProductVo.count}" type="text" name="num" />
                                 <span class="count-plus"></span>
                             </div>
                         </td>
                         <td class="txt-error">￥<span class="price" th:text="${cartMerchantProductVo.basisPrice}"></span></td>
                         <td>
-                            <a th:href="@{/detectCart(productId=${cartMerchantProductVo.productId})}" class="del iconfont icon-shanchu"></a>
+                            <a th:href="@{/detectCart(userId=${userId},productId=${cartMerchantProductVo.productId})}" class="del iconfont icon-shanchu"></a>
                         </td>
                     </tr>
                     </tbody>
