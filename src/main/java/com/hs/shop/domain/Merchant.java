@@ -55,6 +55,11 @@ public class Merchant implements Serializable {
      */
     private Integer fansCount;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -77,7 +82,8 @@ public class Merchant implements Serializable {
             && (this.getTelphone() == null ? other.getTelphone() == null : this.getTelphone().equals(other.getTelphone()))
             && (this.getProductNumber() == null ? other.getProductNumber() == null : this.getProductNumber().equals(other.getProductNumber()))
             && (this.getSaleNumber() == null ? other.getSaleNumber() == null : this.getSaleNumber().equals(other.getSaleNumber()))
-            && (this.getFansCount() == null ? other.getFansCount() == null : this.getFansCount().equals(other.getFansCount()));
+            && (this.getFansCount() == null ? other.getFansCount() == null : this.getFansCount().equals(other.getFansCount()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -92,6 +98,7 @@ public class Merchant implements Serializable {
         result = prime * result + ((getProductNumber() == null) ? 0 : getProductNumber().hashCode());
         result = prime * result + ((getSaleNumber() == null) ? 0 : getSaleNumber().hashCode());
         result = prime * result + ((getFansCount() == null) ? 0 : getFansCount().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -110,6 +117,7 @@ public class Merchant implements Serializable {
         sb.append(", saleNumber=").append(saleNumber);
         sb.append(", fansCount=").append(fansCount);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

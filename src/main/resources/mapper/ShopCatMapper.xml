@@ -9,10 +9,11 @@
             <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="productId" column="product_id" jdbcType="INTEGER"/>
             <result property="count" column="count" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,product_id,
-        count
+        count,deleted
     </sql>
 </mapper>

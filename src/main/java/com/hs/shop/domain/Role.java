@@ -30,6 +30,11 @@ public class Role implements Serializable {
      */
     private String roledesc;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +52,8 @@ public class Role implements Serializable {
         Role other = (Role) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getRolename() == null ? other.getRolename() == null : this.getRolename().equals(other.getRolename()))
-            && (this.getRoledesc() == null ? other.getRoledesc() == null : this.getRoledesc().equals(other.getRoledesc()));
+            && (this.getRoledesc() == null ? other.getRoledesc() == null : this.getRoledesc().equals(other.getRoledesc()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -57,6 +63,7 @@ public class Role implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getRolename() == null) ? 0 : getRolename().hashCode());
         result = prime * result + ((getRoledesc() == null) ? 0 : getRoledesc().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -70,6 +77,7 @@ public class Role implements Serializable {
         sb.append(", rolename=").append(rolename);
         sb.append(", roledesc=").append(roledesc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

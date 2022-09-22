@@ -17,11 +17,25 @@ public class Route {
 
     @GetMapping("/")
     public String goIndex() {
-        return "index";
+        return "index-mz";
     }
 
     @GetMapping("/goLogin")
     public String goLogin() {
         return "login";
     }
+
+    @GetMapping("/goSafe")
+    public String goSage(){
+        return "uc-safe";
+    }
+
+    @GetMapping("/register")
+    public String goRegister() {
+        String a = "1";
+        return "sign-in";
+    }
+
+
+
 }

@@ -30,6 +30,11 @@ public class ProductPho implements Serializable {
      */
     private String photograph;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +52,8 @@ public class ProductPho implements Serializable {
         ProductPho other = (ProductPho) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
-            && (this.getPhotograph() == null ? other.getPhotograph() == null : this.getPhotograph().equals(other.getPhotograph()));
+            && (this.getPhotograph() == null ? other.getPhotograph() == null : this.getPhotograph().equals(other.getPhotograph()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -57,6 +63,7 @@ public class ProductPho implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
         result = prime * result + ((getPhotograph() == null) ? 0 : getPhotograph().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -70,6 +77,7 @@ public class ProductPho implements Serializable {
         sb.append(", productId=").append(productId);
         sb.append(", photograph=").append(photograph);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

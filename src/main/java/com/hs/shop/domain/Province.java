@@ -50,6 +50,11 @@ public class Province implements Serializable {
      */
     private String center;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -71,7 +76,8 @@ public class Province implements Serializable {
             && (this.getLevel() == null ? other.getLevel() == null : this.getLevel().equals(other.getLevel()))
             && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
             && (this.getCitycode() == null ? other.getCitycode() == null : this.getCitycode().equals(other.getCitycode()))
-            && (this.getCenter() == null ? other.getCenter() == null : this.getCenter().equals(other.getCenter()));
+            && (this.getCenter() == null ? other.getCenter() == null : this.getCenter().equals(other.getCenter()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -85,6 +91,7 @@ public class Province implements Serializable {
         result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
         result = prime * result + ((getCitycode() == null) ? 0 : getCitycode().hashCode());
         result = prime * result + ((getCenter() == null) ? 0 : getCenter().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -102,6 +109,7 @@ public class Province implements Serializable {
         sb.append(", citycode=").append(citycode);
         sb.append(", center=").append(center);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

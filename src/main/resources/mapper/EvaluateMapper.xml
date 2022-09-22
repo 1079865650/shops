@@ -12,12 +12,13 @@
             <result property="content" column="content" jdbcType="VARCHAR"/>
             <result property="time" column="time" jdbcType="TIMESTAMP"/>
             <result property="grade" column="grade" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,isNoName,user_id,
         product_id,content,time,
-        grade
+        grade,deleted
     </sql>
 
 </mapper>

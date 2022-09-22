@@ -7,9 +7,10 @@
     <resultMap id="BaseResultMap" type="com.hs.shop.domain.Banner">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="bannerImg" column="bannerImg" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,bannerImg
+        id,bannerImg,deleted
     </sql>
 </mapper>

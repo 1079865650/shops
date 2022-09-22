@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hs.shop.domain.Merchant;
 import com.hs.shop.service.MerchantService;
 import com.hs.shop.mapper.MerchantMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +17,3 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>
     implements MerchantService{
 
 }
-
-
-
-

@@ -8,9 +8,10 @@
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="rolename" column="rolename" jdbcType="VARCHAR"/>
             <result property="roledesc" column="roledesc" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,rolename,roledesc
+        id,rolename,roledesc,deleted
     </sql>
 </mapper>

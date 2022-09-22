@@ -15,12 +15,14 @@
             <result property="ispay" column="isPay" jdbcType="INTEGER"/>
             <result property="iswaitdel" column="isWaitDel" jdbcType="INTEGER"/>
             <result property="iswaitrec" column="isWaitRec" jdbcType="INTEGER"/>
+            <result property="iscomplete" column="isComplete" javaType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,product_ids,
         deli_address_id,create_time,order_number,
         order_price,isPay,isWaitDel,
-        isWaitRec
+        isWaitRec,isComplete,deleted
     </sql>
 </mapper>
