@@ -99,7 +99,7 @@
                 <div class="detail-show">
                     <div class="origin-show">
                         <div class="zoomup"></div>
-                        <img id="big-pic" class="big-pic" th:src="@{showImg}+'?filename='+${product.mainPhoto}" th:alt="${product.productName}"  />
+                        <img id="big-pic" class="big-pic" src="" alt="百搭清新花朵两件套连衣裙" />
 
                     </div>
                     <div id="thumb-show" class="thumb-show">
@@ -109,18 +109,18 @@
                         <img src="" alt="" />
                     </div>
                 </div>
-                <div class="detail-info" th:object="${product}">
-                    <div id="item-title" class="item-title" th:text="*{detail}"></div>
+                <div class="detail-info">
+                    <div id="item-title" class="item-title">百搭清新花朵两件套连衣裙</div>
                     <div class="item-price">
 
-                        <span id="now-my" class="now"th:text="'￥'+*{basisPrice}" ></span><span id="now-my-x" class="dft"></span>
+                        <span id="now-my" class="now">￥49.00</span><span id="now-my-x" class="dft">￥69.00</span>
 
 
                     </div>
                     <ul class="item-data clearfix">
-                        <li class="col-4">销量<span id="txt-theme-ml10-01" class="txt-theme ml10" th:text="*{basisPrice}"></span></li>
+                        <li class="col-4">销量<span id="txt-theme-ml10-01" class="txt-theme ml10">27件</span></li>
                         <li class="col-4">好评率<span class="txt-theme ml10">99%</span></li>
-                        <li class="col-4">收藏<span class="txt-theme ml10" th:text="*{colMunber}"></span></li>
+                        <li class="col-4">收藏<span class="txt-theme ml10">228人</span></li>
                     </ul>
                     <div class="sku-info">
 
@@ -149,7 +149,7 @@
                                     <span class="count-plus"></span>
                                 </div>
                                 <span>（限购30件）</span>
-                                <div id="stock1" class="stock" th:text="'(库存'+*{productStock}+')'">(库存102件)</div>
+                                <div id="stock1" class="stock">(库存102件)</div>
                             </div>
                         </div>
                     </div>
@@ -210,6 +210,191 @@
                 </ul>
             </div>
         </div>
+
+        <!-- 商品推荐
+        <div class="ui-tabs">
+
+
+            <span class="item active">店长推荐</span>
+        </div>
+        <ul class="detail-rec clearfix">
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+            <li>
+                <a href="" class="figure"><img src="uploads/8.jpg" alt="" /></a>
+                <div class="name"><a href="">无袖修身镂空蕾丝连衣裙</a></div>
+                <div class="price">￥119.00</div>
+            </li>
+        </ul>
+        &lt;!&ndash; 商品推荐 &ndash;&gt;
+
+
+        <div class="detail-bottom clearfix">
+            <div class="detail-main">
+                <div class="detail-tabs">
+                    <a class="item" href="javascript:;">详情描述</a>
+                    <a class="item" href="javascript:;">规格参数</a>
+                    <a class="item" href="javascript:;">商品评价</a>
+                </div>
+                <div class="tab-con">
+                    <div class="mod-type-cont">
+                        <img src="uploads/10.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="tab-con">
+                    <div class="detail-stand">
+                        <div class="tit">主体规格参数</div>
+                        <div class="attr">
+                            <div class="name">品牌</div>
+                            <div class="value">Sacon帅康</div>
+                        </div>
+                        <div class="attr">
+                            <div class="name">品牌</div>
+                            <div class="value">Sacon帅康</div>
+                        </div>
+                        <div class="attr">
+                            <div class="name">品牌</div>
+                            <div class="value">Sacon帅康</div>
+                        </div>
+                        <div class="attr">
+                            <div class="name">品牌</div>
+                            <div class="value">Sacon帅康</div>
+                        </div>
+                        <div class="attr">
+                            <div class="name">品牌</div>
+                            <div class="value">Sacon帅康</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-con">
+                    <div class="detail-pj">
+                        <div class="detail-pj-nav list clearfix">
+                            <div class="col col1">评价心得</div>
+                            <div class="col col2">满意度</div>
+                            <div class="col col3">商品信息</div>
+                            <div class="col col4">评价用户</div>
+                        </div>
+                        <div class="detail-pj-cont">
+                            <div class="reply list clearfix">
+                                <div class="col col1">不错，一次完美购物<span class="time">2016-02-23  15:56</span></div>
+                                <div class="col col2">[好评]</div>
+                                <div class="col col3">尺码:XL<br>颜色分类：灰色</div>
+                                <div class="col col4"><img class="hdpic" width="40" height="40" src="">
+                                    <div>糖果</div>
+                                </div>
+                            </div>
+                            <div class="reply list clearfix">
+                                <div class="col col1">不错，一次完美购物<span class="time">2016-02-23  15:56</span></div>
+                                <div class="col col2">[好评]</div>
+                                <div class="col col3">尺码:XL<br>颜色分类：灰色</div>
+                                <div class="col col4"><img class="hdpic" width="40" height="40" src="">
+                                    <div>糖果</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pages mb30">
+                            <a class="prev" href="">上一页</a>
+                            <a href="">1</a>
+                            <span>2</span>
+                            <a href="">3</a>
+                            <a href="">4</a>
+                            <i>...</i>
+                            <a href="">71</a>
+                            <a class="next" href="">下一页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-aside">
+                <div class="detail-aside-box mb15">
+                    <div class="big-tit">商品分类</div>
+                    <div class="detail-menu">
+                        <div class="item">
+                            <div class="type" data-action="shopd-type"><span class="iconfont"></span><a href="">男鞋</a></div>
+                            <ul class="c-type">
+                                <li><a href="">圆头鞋</a></li>
+                                <li><a href="">马丁靴</a></li>
+                                <li><a href="">豆豆鞋</a></li>
+                                <li><a href="">帆布鞋</a></li>
+                                <li><a href="">单鞋</a></li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <div class="type" data-action="shopd-type"><span class="iconfont"></span><a href="">女鞋</a></div>
+                            <ul class="c-type">
+                                <li><a href="">圆头鞋</a></li>
+                                <li><a href="">马丁靴</a></li>
+                                <li><a href="">豆豆鞋</a></li>
+                                <li><a href="">帆布鞋</a></li>
+                                <li><a href="">单鞋</a></li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <div class="type" data-action="shopd-type"><span class="iconfont"></span><a href="">童鞋</a></div>
+                            <ul class="c-type">
+                                <li><a href="">圆头鞋</a></li>
+                                <li><a href="">马丁靴</a></li>
+                                <li><a href="">豆豆鞋</a></li>
+                                <li><a href="">帆布鞋</a></li>
+                                <li><a href="">单鞋</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-aside-box">
+                    <div class="big-tit">店铺热销</div>
+                    <ul class="detail-hot">
+                        <li>
+                            <a href="" class="figure"><img src="uploads/9.jpg" alt="" /></a>
+                            <div class="name"><a href="">诗凡黎2016夏装新品海军风</a></div>
+                            <div class="price">
+                                <span class="now">¥149.00</span><span class="origin">¥298.00</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="figure"><img src="uploads/9.jpg" alt="" /></a>
+                            <div class="name"><a href="">诗凡黎2016夏装新品海军风</a></div>
+                            <div class="price">
+                                <span class="now">¥149.00</span><span class="origin">¥298.00</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="figure"><img src="uploads/9.jpg" alt="" /></a>
+                            <div class="name"><a href="">诗凡黎2016夏装新品海军风</a></div>
+                            <div class="price">
+                                <span class="now">¥149.00</span><span class="origin">¥298.00</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
 
 
         <!--脚部-->

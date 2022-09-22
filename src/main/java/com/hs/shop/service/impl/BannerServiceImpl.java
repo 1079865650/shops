@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hs.shop.domain.Banner;
 import com.hs.shop.mapper.BannerMapper;
 import com.hs.shop.service.BannerService;
-import org.springframework.stereotype.Service;
 
-@Service
 public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements BannerService {
 }

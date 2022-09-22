@@ -1,6 +1,4 @@
 package com.hs.shop.mapper;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 import com.hs.shop.domain.Evaluate;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -12,7 +10,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.hs.shop.domain.Evaluate
 */
 public interface EvaluateMapper extends BaseMapper<Evaluate> {
-
 
 }
 

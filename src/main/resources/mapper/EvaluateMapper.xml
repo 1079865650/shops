@@ -20,5 +20,4 @@
         product_id,content,time,
         grade,deleted
     </sql>
-
 </mapper>
