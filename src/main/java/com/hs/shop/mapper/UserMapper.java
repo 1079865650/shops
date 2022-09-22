@@ -1,4 +1,6 @@
 package com.hs.shop.mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 import com.hs.shop.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

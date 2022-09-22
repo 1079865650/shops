@@ -23,7 +23,7 @@
             <div class="left-bar">
                 <div class="change-city"><a class="name">合肥</a><a class="toggle" href="city-select.html">[切换]</a></div>
                 <div class="back-home divider">
-                    <em></em><a href="index.html">商城首页</a>
+                    <em></em><a href="toMainPage">商城首页</a>
                 </div>
                 <div class="item"><a href="shangjia.html">商家-中心</a></div>
             </div>
@@ -49,7 +49,8 @@
     <div class="header-wrap">
         <div class="header wrapper">
             <a href="" class="logo">
-                <img src="img/logo3.png" alt="" />
+<!--                <img src="img/logo3.png" alt="" />-->
+                <img   src="showImg?filename=img/logo3.png"  alt="" />
             </a>
             <div class="header-schbox">
                 <div class="inner clearfix">
@@ -96,97 +97,17 @@
 
             </ul>
             <div class="nav-ad">
-                <a class="ad" href=""><img src="/uploads/nav-ad.jpg" alt="" /></a>
+                <a class="ad" href=""><img src="showImg?filename=uploads/nav-ad.jpg" alt="" /></a>
             </div>
         </div>
     </div>
-    <!--头部-->
-
-    <!-- <div class="side-category" style="display: none;">
-        <div class="side-category-tit">全品分类</div>
-        <div class="side-category-bd">
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">玩转3C</div>
-                    <div class="f-list">
-                        <a href="">手机</a><a href="">数码</a><a href="">通信</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                    <div class="hd">分类</div>
-                    <div class="bd">
-                        <div class="list-wrap">
-                            <a href="">冷却泵</a>
-                            <a href="">冷却水管道</a>
-                            <a href="">冷凝器</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷冻水塔</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷凝器</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷冻水塔</a>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">服饰家居</div>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">商城超市</div>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <a class="f-tit" href="index-dq.html">家用电器</a>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <a class="f-tit" href="index-sxtc.html">生鲜特产</a>
-                    <div class="f-list">
-                        <a href="">食品</a><a href="">生鲜</a><a href="">特产</a><a href="">水果</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-        </div>
-        <div class="side-category-ft" data-action="category-toggle">
-            <span class="label tohide">收起导航</span>
-            <span class="label toshow">展开导航</span>
-        </div>
-    </div> -->
 
     <!-- 商品轮播图 -->
-
     <div id="home-full-banner1" class="home-full-banner">
-        <a href="" class="item"><img data-lazy="/uploads/banner1.jpg" alt="" /></a>
-        <a href="" class="item"><img data-lazy="/uploads/banner3.jpg" alt="" /></a>
-        <a href="" class="item"><img data-lazy="/uploads/b2.jpg" alt="" /></a>
-
+<!--        <a href="" class="item" th:each=""></a>-->
+        <a href="" class="item"><img th:src="@{showImg}+'?filename='+${banners[0].bannerImg}" alt="" /></a>
+        <a href="" class="item"><img th:src="@{showImg}+'?filename='+${banners[1].bannerImg}" alt="" /></a>
+        <a href="" class="item"><img th:src="@{showImg}+'?filename='+${banners[2].bannerImg}" alt="" /></a>
     </div>
 
     <div class="gray-box">
@@ -194,16 +115,16 @@
             <!-- 商品促销 -->
             <div id="promo-list-clearfix-one" class="promo-list clearfix">
                 <div class="col">
-                    <a class="item" href="#"><img src="/uploads/13.jpg" alt="" /></a>
+                    <a class="item" th:href="|goodsDetail?id=${products[0].id}|"><img th:src="@{showImg}+'?filename='+${products[0].mainPhoto}" alt="" /></a>
                 </div>
                 <div class="col">
-                    <a class="item" href="#"><img src="/uploads/14.jpg" alt="" /></a>
+                    <a class="item" th:href="|goodsDetail?id=${products[1].id}|"><img th:src="@{showImg}+'?filename='+${products[1].mainPhoto}" alt="" /></a>
                 </div>
                 <div class="col">
-                    <a class="item" href="#"><img src="/uploads/15.jpg" alt="" /></a>
+                    <a class="item" th:href="|goodsDetail?id=${products[2].id}|"><img th:src="|showImg?filename=${products[2].mainPhoto}|" alt="" /></a>
                 </div>
                 <div class="col">
-                    <a class="item" href="#"><img src="/uploads/16.jpg" alt="" /></a>
+                    <a class="item" th:href="@{goodsDetail}+'?id='+${products[3].id}"><img th:src="|showImg?filename=${products[3].mainPhoto}|" alt="" /></a>
                 </div>
             </div>
 
@@ -683,6 +604,24 @@
 <script src="/js/slick/slick.min.js"></script>
 <script src="/js/global.js"></script>
 <script>
+    //页面加载时调用该方法 使用ajax返回banner对象
+    // window.onload=function(){
+    //     $.ajax({
+    //         url:"selectBanner",
+    //         async:false,
+    //         data:"",
+    //         type:"post",
+    //         success:function (data){
+    //             for(var i in data){
+    //                 console.log(data[i].bannerImg);
+    //             }
+    //         },
+    //         error:function(date){
+    //             $.message.alert('出错了','系统出错，请联系管理员。','error');
+    //         }
+    //     })
+    // }
+
     getCartNums();
     var token = localStorage.getItem("token");
     $('.home-full-banner').slick({
@@ -722,33 +661,7 @@
     });
 
 
-
-
-    // 轮播图-驰名品牌   该类商品类别cateid=  
-
-    // $.ajax({
-    //     url: "http://localhost/onl/user/product/byCateid?cateid=1",
-    //     type: "get",
-    //     async: false,
-    //     success: function(respData) {
-
-    //         if (respData.code == 200) {
-    //             let i=0;
-    //             for (let lb of respData.data.products) {
-
-    //                 $($("#zhutu").children().get(i)).attr('href', 'http://localhost/shops/goods-detail.html?productid='+lb.proid);
-    //                 $($("#zhutu").children().get(i)).children().attr('data-lazy', 'http://192.168.1.92:8080/mainImg/'+lb.mainimage);
-
-    //                 if(i>1){
-    //                   break;
-    //                 }
-    //                 i++;
-    //             }     
-    //         }
-    //     }
-    // })
-
-    // 促销商品 该类商品类别cateid=  
+    // 促销商品 该类商品类别cateid=
 
     $.ajax({
         url: "http://localhost/onl/product/byCateid?cateid=6",
