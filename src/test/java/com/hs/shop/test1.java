@@ -1,41 +1,78 @@
 package com.hs.shop;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hs.shop.domain.ProCategory;
 import com.hs.shop.domain.Product;
-import com.hs.shop.domain.User;
+import com.hs.shop.service.MerchantService;
+import com.hs.shop.service.ProCategoryService;
 import com.hs.shop.service.ProductService;
-import com.hs.shop.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author :王文松
- * @date : 2022/9/21 15:27
- */
 @SpringBootTest
-public class test1 {
+public class Test1 {
     @Autowired
-    UserService userService;
+    private MerchantService merchantService;
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+    @Autowired
+    private ProCategoryService proCategoryService;
+
     @Test
-    public void toMainPage(){
-        User user = userService.getById(1);
-        System.out.println(user.toString());
+    public void t1() {
+        QueryWrapper<Product> qw = new QueryWrapper<>();
+        qw.eq("merchant_id", 1);
+        List<Product> list = productService.list(qw);
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void selectAllProductClassification() {
+        ProCategory byId = proCategoryService.getById(7);
+        QueryWrapper<ProCategory> qw = new QueryWrapper<>();
+        qw.eq("parent_id", 7);
+        List<ProCategory> list = proCategoryService.list(qw);
+        Map<ProCategory, List<ProCategory>> allProduct = new HashMap<>();
+        allProduct.put(byId, list);
     }
     @Test
-    public void t2(){
+    public void t3(){
+        Page<Product> page = new Page<>(1, 2);
         QueryWrapper<Product> qw = new QueryWrapper<>();
-        qw.eq("merchant_Id",1);
-        List<Product> products = productService.list(qw);
-//        Map<String, Object> map = productService.getMap(qw);
-//        System.out.println(map);
-        for(Product p : products){
-            System.out.println("list:"+p.toString());
+        qw.like("cate_ids",1);
+        Page<Product> page1 = productService.page(page, qw);
+        System.out.println(page1.getTotal());
+        System.out.println(page1.getCurrent());
+        System.out.println(page1.getPages());
+        System.out.println(page1.hasNext());
+        System.out.println(page1.hasPrevious());
+        for(Product p :page1.getRecords()){
+            System.out.println(p.toString());
         }
     }
+    @Test
+    public void t4(){
+        int i = 10;
+        String a = i+"";
+        Integer b = 10;
+        String c = b.toString();
+        System.out.println(a.getClass());
+        System.out.println(c.getClass());
+    }
+    @Test
+    public void t5(){
+        QueryWrapper<ProCategory> qw = new QueryWrapper<>();
+        qw.and(i -> i.like("cate_name","戴尔").eq("level",1));
+        List<ProCategory> list = proCategoryService.list(qw);
+        for(ProCategory p : list){
+            System.out.println(p.toString());
+        }
+    }
+
 }

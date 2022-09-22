@@ -3,11 +3,9 @@ package com.hs.shop.controller.mainPage;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hs.shop.domain.Banner;
 import com.hs.shop.domain.Product;
+import com.hs.shop.domain.ProductPho;
 import com.hs.shop.domain.User;
-import com.hs.shop.service.BannerService;
-import com.hs.shop.service.GoodsOrderService;
-import com.hs.shop.service.ProductService;
-import com.hs.shop.service.UserService;
+import com.hs.shop.service.*;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,6 +36,8 @@ public class MinPage {
     BannerService bannerService;
     @Autowired
     ProductService productService;
+    @Autowired
+    ProductPhoService productPhoService;
 
    /**
     * 返回index.html主页面  并且返回主页面需要的所有数据
@@ -80,8 +80,12 @@ public class MinPage {
 
     @RequestMapping("/goodsDetail")
     public String goodsDetail(Integer id,Model model){
+        //返回商品根据id
         Product product = productService.getById(id);
         model.addAttribute("product",product);
+        //返回商品关联的相关图片
+        List<ProductPho> list = productPhoService.list(new QueryWrapper<ProductPho>().eq("product_id",id));
+        model.addAttribute("productPho",list);
         return "goods-detail";
     }
 
