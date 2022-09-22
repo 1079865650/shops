@@ -40,6 +40,11 @@ public class Admin implements Serializable {
      */
     private Integer merchantId;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -59,7 +64,8 @@ public class Admin implements Serializable {
             && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
-            && (this.getMerchantId() == null ? other.getMerchantId() == null : this.getMerchantId().equals(other.getMerchantId()));
+            && (this.getMerchantId() == null ? other.getMerchantId() == null : this.getMerchantId().equals(other.getMerchantId()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -71,6 +77,7 @@ public class Admin implements Serializable {
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         result = prime * result + ((getMerchantId() == null) ? 0 : getMerchantId().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -86,6 +93,7 @@ public class Admin implements Serializable {
         sb.append(", state=").append(state);
         sb.append(", merchantId=").append(merchantId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

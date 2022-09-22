@@ -9,10 +9,11 @@
             <result property="orderId" column="order_id" jdbcType="INTEGER"/>
             <result property="productId" column="product_id" jdbcType="INTEGER"/>
             <result property="productCount" column="product_count" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,order_id,product_id,
-        product_count
+        product_count,deleted
     </sql>
 </mapper>

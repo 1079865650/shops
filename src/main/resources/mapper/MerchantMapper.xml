@@ -13,11 +13,12 @@
             <result property="productNumber" column="product_number" jdbcType="INTEGER"/>
             <result property="saleNumber" column="sale_number" jdbcType="INTEGER"/>
             <result property="fansCount" column="fans_count" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,merchant_name,merchant_image,
         address,telphone,product_number,
-        sale_number,fans_count
+        sale_number,fans_count,deleted
     </sql>
 </mapper>

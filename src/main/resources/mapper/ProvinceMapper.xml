@@ -12,11 +12,12 @@
             <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
             <result property="citycode" column="cityCode" jdbcType="VARCHAR"/>
             <result property="center" column="center" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,areaCode,areaName,
         level,parent_id,cityCode,
-        center
+        center,deleted
     </sql>
 </mapper>

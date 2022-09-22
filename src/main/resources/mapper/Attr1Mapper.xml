@@ -9,10 +9,11 @@
             <result property="detail" column="detail" jdbcType="VARCHAR"/>
             <result property="size" column="size" jdbcType="VARCHAR"/>
             <result property="marginPrice" column="margin_price" jdbcType="DECIMAL"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,detail,size,
-        margin_price
+        margin_price,deleted
     </sql>
 </mapper>

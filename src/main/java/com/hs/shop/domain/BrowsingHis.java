@@ -36,6 +36,11 @@ public class BrowsingHis implements Serializable {
      */
     private Date browsingTime;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +59,8 @@ public class BrowsingHis implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
-            && (this.getBrowsingTime() == null ? other.getBrowsingTime() == null : this.getBrowsingTime().equals(other.getBrowsingTime()));
+            && (this.getBrowsingTime() == null ? other.getBrowsingTime() == null : this.getBrowsingTime().equals(other.getBrowsingTime()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -65,6 +71,7 @@ public class BrowsingHis implements Serializable {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
         result = prime * result + ((getBrowsingTime() == null) ? 0 : getBrowsingTime().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -79,6 +86,7 @@ public class BrowsingHis implements Serializable {
         sb.append(", productId=").append(productId);
         sb.append(", browsingTime=").append(browsingTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

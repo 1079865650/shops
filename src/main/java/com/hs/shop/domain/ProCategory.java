@@ -35,6 +35,11 @@ public class ProCategory implements Serializable {
      */
     private Integer parentId;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -53,7 +58,8 @@ public class ProCategory implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getCateName() == null ? other.getCateName() == null : this.getCateName().equals(other.getCateName()))
             && (this.getLevel() == null ? other.getLevel() == null : this.getLevel().equals(other.getLevel()))
-            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()));
+            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -64,6 +70,7 @@ public class ProCategory implements Serializable {
         result = prime * result + ((getCateName() == null) ? 0 : getCateName().hashCode());
         result = prime * result + ((getLevel() == null) ? 0 : getLevel().hashCode());
         result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -78,6 +85,7 @@ public class ProCategory implements Serializable {
         sb.append(", level=").append(level);
         sb.append(", parentId=").append(parentId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

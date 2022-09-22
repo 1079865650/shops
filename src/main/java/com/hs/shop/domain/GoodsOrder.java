@@ -83,6 +83,17 @@ public class GoodsOrder implements Serializable {
      */
     private Integer iswaitrec;
 
+    /**
+     * 订单是否完成，0为未完成，1为该订单已最终完成
+     */
+    private Integer iscomplete;
+
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -107,7 +118,9 @@ public class GoodsOrder implements Serializable {
             && (this.getOrderPrice() == null ? other.getOrderPrice() == null : this.getOrderPrice().equals(other.getOrderPrice()))
             && (this.getIspay() == null ? other.getIspay() == null : this.getIspay().equals(other.getIspay()))
             && (this.getIswaitdel() == null ? other.getIswaitdel() == null : this.getIswaitdel().equals(other.getIswaitdel()))
-            && (this.getIswaitrec() == null ? other.getIswaitrec() == null : this.getIswaitrec().equals(other.getIswaitrec()));
+            && (this.getIswaitrec() == null ? other.getIswaitrec() == null : this.getIswaitrec().equals(other.getIswaitrec()))
+            && (this.getIscomplete() == null ? other.getIscomplete() == null : this.getIscomplete().equals(other.getIscomplete()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -124,6 +137,8 @@ public class GoodsOrder implements Serializable {
         result = prime * result + ((getIspay() == null) ? 0 : getIspay().hashCode());
         result = prime * result + ((getIswaitdel() == null) ? 0 : getIswaitdel().hashCode());
         result = prime * result + ((getIswaitrec() == null) ? 0 : getIswaitrec().hashCode());
+        result = prime * result + ((getIscomplete() == null) ? 0 : getIscomplete().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -144,6 +159,8 @@ public class GoodsOrder implements Serializable {
         sb.append(", iswaitdel=").append(iswaitdel);
         sb.append(", iswaitrec=").append(iswaitrec);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", iscomplete=").append(iscomplete);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

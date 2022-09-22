@@ -11,10 +11,11 @@
             <result property="detailAddr" column="detail_addr" jdbcType="VARCHAR"/>
             <result property="provinceIds" column="province_ids" jdbcType="VARCHAR"/>
             <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,consignee,phone,
-        detail_addr,province_ids,user_id
+        detail_addr,province_ids,user_id,deleted
     </sql>
 </mapper>

@@ -30,6 +30,11 @@ public class Collection implements Serializable {
      */
     private Integer productId;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +52,8 @@ public class Collection implements Serializable {
         Collection other = (Collection) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()));
+            && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -57,6 +63,7 @@ public class Collection implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -70,6 +77,7 @@ public class Collection implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", productId=").append(productId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

@@ -36,6 +36,11 @@ public class Attr2 implements Serializable {
      */
     private BigDecimal marginPrice;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +59,8 @@ public class Attr2 implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getDetail() == null ? other.getDetail() == null : this.getDetail().equals(other.getDetail()))
             && (this.getSize() == null ? other.getSize() == null : this.getSize().equals(other.getSize()))
-            && (this.getMarginPrice() == null ? other.getMarginPrice() == null : this.getMarginPrice().equals(other.getMarginPrice()));
+            && (this.getMarginPrice() == null ? other.getMarginPrice() == null : this.getMarginPrice().equals(other.getMarginPrice()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -65,6 +71,7 @@ public class Attr2 implements Serializable {
         result = prime * result + ((getDetail() == null) ? 0 : getDetail().hashCode());
         result = prime * result + ((getSize() == null) ? 0 : getSize().hashCode());
         result = prime * result + ((getMarginPrice() == null) ? 0 : getMarginPrice().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -79,6 +86,7 @@ public class Attr2 implements Serializable {
         sb.append(", size=").append(size);
         sb.append(", marginPrice=").append(marginPrice);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

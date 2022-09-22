@@ -11,10 +11,11 @@
             <result property="level" column="level" jdbcType="VARCHAR"/>
             <result property="parentid" column="parentid" jdbcType="INTEGER"/>
             <result property="icon" column="icon" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,powername,path,
-        level,parentid,icon
+        level,parentid,icon,deleted
     </sql>
 </mapper>

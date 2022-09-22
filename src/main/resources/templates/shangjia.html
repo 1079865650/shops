@@ -5,8 +5,645 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商家页面</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/css/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/goods-detail.css" rel="stylesheet" />
+    <link href="/css/search-goods.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link href="/css/catalog.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
+
+<!--头部-->
+<div class="topper">
+    <div class="wrapper">
+        <div class="left-bar">
+            <div class="back-home divider">
+                <em></em><a href="index.html">商城首页</a>
+            </div>
+            <div class="item"><a href="shangjia.html">商家中心</a></div>
+        </div>
+        <div class="right-bar">
+            <div class="login-user sub-menu">
+                <a class="menu-hd" href="uc.html">个人中心<em></em></a>
+                <div class="down">
+                    <a href="">内容</a>
+                    <a href="">内容</a>
+                    <a href="">内容</a>
+                </div>
+            </div>
+            <div class="item"><a href="uc-msg.html">消息（<span class="txt-theme">0</span>）</a></div>
+            <div class="logout divider"><a onclick="logout()">退出</a></div>
+            <span class=""></span>
+            <div class="cart"><em></em><a onclick="goCart()">购物车<span class="txt-theme" id="cartNums">0</span>件</a></div>
+            <div class="order"><em></em><a onclick="ucorder()">我的订单</a></div>
+            <div class="fav"><em></em><a href="uc-fav.html">我的收藏</a></div>
+            <div class="help"><em></em><a href="">帮助中心</a></div>
+        </div>
+    </div>
+</div>
+<div class="shop-header wrapper">
+    <div class="logo">
+        <a href="index.html"><img src="/img/logo.png" alt="logo" /></a>
+    </div>
+    <div class="shop-meta">
+        <span class="ico"></span>
+        <div class="info">
+            <div class="name" th:text="${merchant.merchantName}"></div>
+            <div class="meta">
+                [&nbsp;描述&nbsp;<span class="txt-warn">4.6</span>&ensp;质量&nbsp;<span class="txt-theme">4.8</span>&ensp;服务&nbsp;<span class="txt-theme">4.9</span>&ensp;发货&nbsp;<span class="txt-theme">4.8</span>&nbsp;]
+            </div>
+        </div>
+    </div>
+    <div class="shop-schbox">
+        <div class="layout">
+            <form action="" method="">
+                <input class="search-txt" placeholder="搜流行宝贝">
+                <button class="search-btn site">搜全站</button>
+                <button class="search-btn shop">搜本店</button>
+                <div class="suggest-box">
+                    <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖
+                        <div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="shop-nav-box">
+    <div class="shop-nav wrapper">
+        <div class="shop-nav-all">
+            <a href="">所有宝贝</a>
+            <div class="sublist">
+                <a href="">短袖T恤/吊带</a>
+                <a href="">连体裤</a>
+                <a href="">吊带</a>
+            </div>
+        </div>
+        <ul class="shop-nav-rec">
+            <li><a href="">首页</a></li>
+<!--            <li><a href="">2016春夏新品</a></li>-->
+<!--            <li><a href="">女鞋</a></li>-->
+<!--            <li><a href="">童鞋</a></li>-->
+        </ul>
+    </div>
+</div>
+<!--头部-->
+
+<div class="filter-box">
+    <div class="wrapper wrap">
+        <div class="resumeContainer">
+            <div class="resumeWrap">
+                <div class="catalogInfo" onclick="appelone()">
+                    <a href="javascript:void(0);">
+                        <p class="title">秋季新品</p>
+                    </a>
+                    <a class="imgWrap" href="">
+                </div>
+
+            </div>
+            <div class="resumeWrap">
+                <div class="catalogInfo" onclick="appeltwo()">
+                    <a href="javascript:void(0);">
+                        <p class="title">服饰内衣</p>
+                    </a>
+                    <a class="imgWrap" href="">
+                </div>
+            </div>
+            <div class="resumeWrap">
+                <div class="catalogInfo" onclick="appelthree()">
+                    <a href="javascript:void(0);">
+                        <p class="title">鞋靴箱包</p>
+                    </a>
+                    <a class="imgWrap" href="">
+
+                </div>
+
+            </div>
+            <div class="resumeWrap">
+                <div class="catalogInfo" onclick="appelfour()">
+                    <a href="javascript:void(0);">
+                        <p class="title">钟表珠宝</p>
+                    </a>
+                    <a class="imgWrap" href="">
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="sg-main wrapper">
+    <div class="sg-content">
+        <div class="rank-menu">
+            <div class="rank">
+                <div class="r-item"><a href="javascript:void(0);" onclick="xiaoLiang()">销量</a></div>
+                <div class="r-item"><a class="active" href="javascript:void(0);" onclick="priceAsc()">价格升序</a></div>
+                <div class="r-item"><a class="active" href="javascript:void(0);" onclick="priceDesc()">价格降序</span></a></div>
+            </div>
+        </div>
+        <div id="sg-list-clearfix-one" class="sg-list clearfix">
+
+            <div class="col col-3" th:each="product : ${byPage.records}" style="height: 460px">
+                <div class="item" style="height: 460px">
+                    <div class="inner" style="height: 460px;margin-top: 6px">
+                        <a href="goods-detail.html">
+                            <div><img src="/img/sm/2.jpg" style="width: 238px" /></div>
+                            <div class="name" th:text="${product.productName}"></div>
+                            <div class="price" th:text="${product.basisPrice}+元"></div>
+                        </a>
+                        <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分页 -->
+<!--            <div class="col col-12">-->
+<!--                <ul class="pagination">-->
+<!--                    <li><a th:href="|enter?id=${merchant.id}&currPage=1|" aria-label="Previous">首页</a></li>-->
+<!--                    <c:forEach begin="1" end="${page.pageCount}" var="n">-->
+<!--                        <a href="${pageContext.request.contextPath}/user/userServlet?action=selectFenYe&pageNum=${n}" class="btn btn-default">${n}</a>-->
+<!--                    </c:forEach>-->
+<!--                    <li><a th:href="|enter?id=${merchant.id}&currPage=1|" aria-label="Next">尾页</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="col col-3">-->
+<!--                <div class="item">-->
+<!--                    <div class="inner">-->
+<!--                        <a href="goods-detail.html">-->
+<!--                            <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>-->
+<!--                            <div class="price">6099元</div>-->
+<!--                        </a>-->
+<!--                        <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col col-3">-->
+<!--                <div class="item">-->
+<!--                    <div class="inner">-->
+<!--                        <a href="goods-detail.html">-->
+<!--                            <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>-->
+<!--                            <div class="price">6099元</div>-->
+<!--                        </a>-->
+<!--                        <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col col-3">-->
+<!--                <div class="item">-->
+<!--                    <div class="inner">-->
+<!--                        <a href="goods-detail.html">-->
+<!--                            <div class="name">三星 UA55JU6800JXXZ 超高清网络智能量子点曲面电视机</div>-->
+<!--                            <div class="price">6099元</div>-->
+<!--                        </a>-->
+<!--                        <a class="act" href=""><i class="iconfont icon-cart"></i>加入购物车</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div id="pages-one" class="pages">
+
+        </div>
+    </div>
+    <div class="sg-aside">
+        <div class="sg-aside-tit">
+            热销商品
+        </div>
+        <div class="shop-hot" id="shop-hot-one">
+            <div class="item" th:each="pro : ${hotSale}">
+                <a href=""><img class="figure" src="/img/sm/1.jpeg" alt=""></a>
+                <div class="p-name"><a href="" th:text="${pro.productName}"></a></div>
+                <div class="price" th:text="￥+${pro.basisPrice}"></div>
+            </div>
+
+<!--            <div class="item">-->
+<!--                <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>-->
+<!--                <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>-->
+<!--                <div class="price">¥5999.00</div>-->
+<!--            </div>-->
+<!--            <div class="item">-->
+<!--                <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>-->
+<!--                <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>-->
+<!--                <div class="price">¥5999.00</div>-->
+<!--            </div>-->
+<!--            <div class="item">-->
+<!--                <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>-->
+<!--                <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>-->
+<!--                <div class="price">¥5999.00</div>-->
+<!--            </div>-->
+<!--            <div class="item">-->
+<!--                <a href=""><img class="figure" src="/uploads/33.jpg" alt="" /></a>-->
+<!--                <div class="p-name"><a href="">飞利浦（PHILIPS）32PHF5021/T3 32英寸液</a></div>-->
+<!--                <div class="price">¥5999.00</div>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+
+<!--脚部-->
+<div class="fatfooter">
+    <div class="wrapper">
+        <div class="fatft-service">
+            <div class="item">
+                <a href="">
+                    <img src="/img/ico/ft-ser1.png" alt="" class="ico" />
+                    <span>品质保障</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="/img/ico/ft-ser2.png" alt="" class="ico" />
+                    <span>七天无理由退换货</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="/img/ico/ft-ser3.png" alt="" class="ico" />
+                    <span>特色服务体验</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <img src="/img/ico/ft-ser4.png" alt="" class="ico" />
+                    <span>帮助中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="fatft-links">
+        <div class="wrapper">
+            <div class="col-link">
+                <div class="tit">购物指南</div>
+                <div class="link"><a href="">购物流程</a></div>
+                <div class="link"><a href="">账户安全</a></div>
+                <div class="link"><a href="">联系客服</a></div>
+                <div class="link"><a href="">会员介绍</a></div>
+            </div>
+            <div class="col-link">
+                <div class="tit">配送方式</div>
+                <div class="link"><a href="">配送服务查询上</a></div>
+                <div class="link"><a href="">门自提</a></div>
+                <div class="link"><a href="">物流费用标准</a></div>
+            </div>
+            <div class="col-link">
+                <div class="tit">支付方式</div>
+                <div class="link"><a href="">银联支付</a></div>
+                <div class="link"><a href="">支付宝支付</a></div>
+                <div class="link"><a href="">微信支付</a></div>
+            </div>
+            <div class="col-link">
+                <div class="tit">售后服务</div>
+                <div class="link"><a href="">售后政策</a></div>
+                <div class="link"><a href="">价格保护</a></div>
+                <div class="link"><a href="">退单说明</a></div>
+                <div class="link"><a href="">取消订单</a></div>
+            </div>
+            <div class="col-link">
+                <div class="tit">联系我们</div>
+                <div class="link"><a href="">商家入驻</a></div>
+                <div class="link"><a href="">营销服务</a></div>
+                <div class="link"><a href="">关于我们</a></div>
+                <div class="link"><a href="">广告服务</a></div>
+            </div>
+            <div class="col-contact">
+                <div class="phone">400-000-0000</div>
+                <div class="time">周一至周日 8:00-18:00 <br />（仅收市话费）</div>
+                <div class="tool">
+                    <a href="" class="kefu"><i class="iconfont icon-huifu"></i>在线客服</a>
+                    <a class="ico weixin" href=""><img src="/img/ico/ft-weixin.png" alt="" /><img src="/uploads/ercode.jpg" class="ercode" /></a>
+                    <a class="ico sina" href=""><img src="/img/ico/ft-sina.png" alt="" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018 备案号：皖ICP备123456789</div>
+<!--脚部-->
 </body>
+
+<script src="/js/jquery-3.6.0.js"></script>
+
+<script src="/js/jquery.js"></script>
+
+<link rel="stylesheet" href="/js/slick/slick.css" />
+<script src="/js/slick/slick.min.js"></script>
+<script src="/js/global.js"></script>
+<script>
+    var productidStr = location.href;
+    var productid = productidStr.substring(productidStr.lastIndexOf('=') + 1)
+    $.ajax({
+        url: 'http://localhost/onl/product/byproid',
+        type: 'get',
+        data: {
+            proid: productid
+        },
+        success: function(respData) {
+            var prt = respData.data.product;
+            var a = prt.price + 200;
+            $('#big-pic').attr('src', 'http://192.168.1.92:8080/img/mainImg/' + prt.mainimage)
+            $('#item-title').text(prt.pname)
+            $('#now-my').text('￥' + prt.price)
+            $('#now-my-x').text('￥' + a)
+
+            $('#txt-theme-ml10-01').text(prt.sales + '件')
+            $('#stock1').text('库存' + prt.stock + '件')
+        }
+    })
+    $(function() {
+        $.ajax({
+            url: 'http://localhost/onl/proImg/byproductid',
+            type: 'get',
+            data: {
+                productid: productid
+            },
+            success: function(respData) {
+                for (var pg of respData.data.proImgs) {
+                    $('#thumb-show').append('<span class="item"><img class="s-pic"  src="http://192.168.1.92:8080/img/mainImg/' + pg.iunique + '" ></span>')
+                }
+            }
+
+        })
+    })
+
+
+
+    //     /*商品数量操作*/
+    // function goodsCount(o) {
+    //     if (!(o instanceof Object)) var o = {};
+    //     var inputCell = o.inputCell || ".count-input",
+    //         minusCell = o.minusCell || ".count-minus",
+    //         plusCell = o.plusCell || ".count-plus",
+    //         disClass = o.disClass || "disabled";
+    //     return this.each(function() {
+    //         var $wrap = $(this),
+    //             $input = $(inputCell, $wrap),
+    //             $minus = $(minusCell, $wrap),
+    //             $plus = $(plusCell, $wrap),
+    //             maxnum = parseInt($wrap.attr('data-max')) || false,
+    //             minnum = $wrap.attr('data-min') || 1,
+    //             initnum = $input.val() || minnum;
+    //         /*初始*/
+    //         $input.val(initnum);
+    //         checkIlegal();
+
+    //         function checkIlegal() {
+    //             var value = parseInt($input.val());
+
+    //             //
+    //             if (maxnum && value > maxnum) {
+    //                 $input.val(maxnum);
+    //             } else if (value < minnum) {
+    //                 $input.val(minnum);
+    //             }
+    //             if (value <= minnum) {
+    //                 $minus.addClass(disClass);
+    //             } else {
+    //                 $minus.removeClass(disClass);
+    //             }
+    //             if (value >= maxnum) {
+    //                 $plus.addClass(disClass);
+    //             } else {
+    //                 $plus.removeClass(disClass);
+    //             }
+
+    //         }
+
+
+    //立即购买
+    function buyNow() {
+        if (localStorage.getItem("token") == null || localStorage.getItem("token") === "") {
+            location.href = "login.html"
+        } else {
+            const nums = $("#nums").val();
+            location.href = "confirm-order.html?nums=" + nums + "&proid=" + productid;
+        }
+    }
+    getCartNums();
+
+    function addCart() {
+        if (localStorage.getItem("token") == null || localStorage.getItem("token") === "") {
+            location.href = "login.html"
+        } else {
+            const nums = $("#nums").val();
+            $.ajax({
+                headers: {
+                    token
+                },
+                url: base + "/cart/save",
+                type: "POST",
+                async: false,
+                data: {
+                    quantity: nums,
+                    proid: productid,
+                    success: function(data) {
+                        alert("成功添加" + nums + "件商品")
+                    }
+                }
+            })
+            getCartNums();
+        }
+    }
+
+    /*商品数量操作*/
+    function goodsCount(o) {
+        if (!(o instanceof Object)) var o = {};
+        var inputCell = o.inputCell || ".count-input",
+            minusCell = o.minusCell || ".count-minus",
+            plusCell = o.plusCell || ".count-plus",
+            disClass = o.disClass || "disabled";
+        return this.each(function() {
+            var $wrap = $(this),
+                $input = $(inputCell, $wrap),
+                $minus = $(minusCell, $wrap),
+                $plus = $(plusCell, $wrap),
+                maxnum = parseInt($wrap.attr('data-max')) || false,
+                minnum = $wrap.attr('data-min') || 1,
+                initnum = $input.val() || minnum;
+            /*初始*/
+            $input.val(initnum);
+            checkIlegal();
+
+            function checkIlegal() {
+                var value = parseInt($input.val());
+
+                //
+                if (maxnum && value > maxnum) {
+                    $input.val(maxnum);
+                } else if (value < minnum) {
+                    $input.val(minnum);
+                }
+                if (value <= minnum) {
+                    $minus.addClass(disClass);
+                } else {
+                    $minus.removeClass(disClass);
+                }
+                if (value >= maxnum) {
+                    $plus.addClass(disClass);
+                } else {
+                    $plus.removeClass(disClass);
+                }
+
+            }
+
+            function checknull() {
+                var value = $input.val();
+                if (value === "" || value === "0") {
+                    $input.val(minnum);
+                }
+            }
+            $input.keyup(function(evt) {
+                var value = $(this).val();
+                var newvalue = value.replace(/[^\d]/g, "");
+                $(this).val(newvalue);
+                checknull();
+
+            });
+            $input.blur(function() {
+                checknull();
+                checkIlegal();
+            })
+
+            $minus.click(function() {
+                minus();
+                checkIlegal();
+            });
+
+
+            $plus.click(function() {
+                add();
+                checkIlegal();
+            });
+
+            function add() {
+                var value = $input.val();
+                var plus = parseInt(value) + 1;
+                $input.val(plus);
+            }
+
+            function minus() {
+                var value = parseInt($input.val());
+                var minus = value - 1;
+                $input.val(minus);
+            }
+        });
+    }
+    $.fn.goodsCount = goodsCount;
+</script>
+
+<script>
+    $(function() {
+
+        + function() {
+            var index = 0,
+                bsrc = '',
+                timer = null,
+                box = $('.detail-show'),
+                origin = $('.origin-show'),
+                bigimg = box.find('.big-pic'),
+                tumb = box.find('.thumb-show'),
+                tumbItem = tumb.find('.item'),
+                zoomup = box.find('.zoomup'),
+                zoomshow = box.find('.zoom-show');
+
+            /*图片切换*/
+
+            tumbItem.on('mouseenter', function() {
+                index = $(this).index();
+                clearTimeout(timer);
+                timer = setTimeout(function() {
+                    update(index);
+                }, 300)
+
+            });
+
+            function update(index) {
+                bsrc = tumbItem.eq(index).find('.s-pic').attr('bsrc');
+                bigimg.attr('src', bsrc);
+                tumbItem.find('.s-pic').removeClass('active').end().eq(index).find('.s-pic').addClass('active');
+            }
+
+            update(index);
+
+            if ($('.detail-show .thumb-show .item').length > 5) {
+                $('.detail-show .thumb-show').slick({
+                    slidesToShow: 5,
+                    infinite: false
+                });
+            }
+
+            /*放大镜*/
+            origin.on('mouseover mouseout', function(e) {
+                if (e.type == "mouseover") {
+                    var oX = $(this).offset().left,
+                        oY = $(this).offset().top,
+                        zX = e.pageX,
+                        zY = e.pageY,
+                        pW = $(this).outerWidth(),
+                        pH = $(this).outerHeight(),
+                        zW = zoomup.outerWidth(),
+                        zH = zoomup.outerHeight(),
+                        scale = pW / zW,
+                        zsW = zoomshow.width() * scale, //放大后的宽度
+                        factor = zsW / pW
+
+                    zoomshow.find('img').attr('src', bigimg.attr('src')).width(zsW);
+
+                    $(document).on('mousemove.zoom', function(e) {
+                        zX = e.pageX - oX - zW / 2;
+                        zY = e.pageY - oY - zH / 2;
+                        move();
+                    });
+
+                    function move() {
+                        zX = zX <= 0 ? 0 : zX;
+                        zX = zX >= pW - zW ? pW - zW : zX;
+                        zY = zY <= 0 ? 0 : zY;
+                        zY = zY >= pH - zH ? pH - zH : zY;
+                        zoomup.show().css({
+                            top: zY,
+                            left: zX
+                        });
+                        zoomshow.show().find('img').css({
+                            top: -zY * factor,
+                            left: -zX * factor
+                        });
+                    }
+                } else {
+                    $(document).off('mousemove.zoom');
+                    zoomup.hide()
+                    zoomshow.hide();
+                }
+            });
+        }();
+
+        $('.mod-numbox').goodsCount(); //数量加减
+
+        $('.detail-main').zTab({
+            tabnav: '.detail-tabs',
+            trigger: 'click'
+        });
+    });
+    getCartNums();
+
+    function getCartNums() {
+        $.ajax({
+            headers: {
+                token
+            },
+            url: base + "/cart/findNumber",
+            success: function(res) {
+                $("#cartNums").html(res.data.nums);
+                console.log("更新购物车数量成功:" + res.data.nums)
+            }
+        })
+    };
+</script>
+
 </html>

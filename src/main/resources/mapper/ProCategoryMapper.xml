@@ -9,10 +9,11 @@
             <result property="cateName" column="cate_name" jdbcType="VARCHAR"/>
             <result property="level" column="level" jdbcType="INTEGER"/>
             <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,cate_name,level,
-        parent_id
+        parent_id,deleted
     </sql>
 </mapper>

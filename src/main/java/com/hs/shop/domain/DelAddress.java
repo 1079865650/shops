@@ -45,6 +45,11 @@ public class DelAddress implements Serializable {
      */
     private Integer userId;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -65,7 +70,8 @@ public class DelAddress implements Serializable {
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
             && (this.getDetailAddr() == null ? other.getDetailAddr() == null : this.getDetailAddr().equals(other.getDetailAddr()))
             && (this.getProvinceIds() == null ? other.getProvinceIds() == null : this.getProvinceIds().equals(other.getProvinceIds()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()));
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -78,6 +84,7 @@ public class DelAddress implements Serializable {
         result = prime * result + ((getDetailAddr() == null) ? 0 : getDetailAddr().hashCode());
         result = prime * result + ((getProvinceIds() == null) ? 0 : getProvinceIds().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -94,6 +101,7 @@ public class DelAddress implements Serializable {
         sb.append(", provinceIds=").append(provinceIds);
         sb.append(", userId=").append(userId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }

@@ -76,6 +76,11 @@ public class Product implements Serializable {
      */
     private Integer attr2Id;
 
+    /**
+     * 逻辑删除
+     */
+    private String deleted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -102,7 +107,8 @@ public class Product implements Serializable {
             && (this.getCateIds() == null ? other.getCateIds() == null : this.getCateIds().equals(other.getCateIds()))
             && (this.getMerchantId() == null ? other.getMerchantId() == null : this.getMerchantId().equals(other.getMerchantId()))
             && (this.getAttr1Id() == null ? other.getAttr1Id() == null : this.getAttr1Id().equals(other.getAttr1Id()))
-            && (this.getAttr2Id() == null ? other.getAttr2Id() == null : this.getAttr2Id().equals(other.getAttr2Id()));
+            && (this.getAttr2Id() == null ? other.getAttr2Id() == null : this.getAttr2Id().equals(other.getAttr2Id()))
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
     @Override
@@ -121,6 +127,7 @@ public class Product implements Serializable {
         result = prime * result + ((getMerchantId() == null) ? 0 : getMerchantId().hashCode());
         result = prime * result + ((getAttr1Id() == null) ? 0 : getAttr1Id().hashCode());
         result = prime * result + ((getAttr2Id() == null) ? 0 : getAttr2Id().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
 
@@ -143,6 +150,7 @@ public class Product implements Serializable {
         sb.append(", attr1Id=").append(attr1Id);
         sb.append(", attr2Id=").append(attr2Id);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
     }
