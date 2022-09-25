@@ -29,9 +29,9 @@ public class SearchPage {
     @Autowired
     ProductService productService;
     // 图片静态名称搜索
-    @RequestMapping
-    public String searchPage(Model model,String name, @RequestParam(value = "1") String pageCurrent){
-        Page<Product> products = selectAppliancesByName(name, Integer.parseInt(pageCurrent));
+    @RequestMapping("/searchAllGoods")
+    public String searchPage(Model model,String name, @RequestParam(defaultValue = "1") String pageCurrent){
+        Page<Product> products = selectAppliancesByName(name, Integer.parseInt("1"));
         model.addAttribute("products",products);
         return "search-goods";
     }

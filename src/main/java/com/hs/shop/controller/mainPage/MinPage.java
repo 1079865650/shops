@@ -1,10 +1,7 @@
 package com.hs.shop.controller.mainPage;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hs.shop.domain.Banner;
-import com.hs.shop.domain.Product;
-import com.hs.shop.domain.ProductPho;
-import com.hs.shop.domain.User;
+import com.hs.shop.domain.*;
 import com.hs.shop.service.*;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,8 @@ public class MinPage {
     ProductService productService;
     @Autowired
     ProductPhoService productPhoService;
+    @Autowired
+    MerchantService merchantService;
 
    /**
     * 返回index.html主页面  并且返回主页面需要的所有数据
@@ -51,14 +50,21 @@ public class MinPage {
         bw.last("limit 0,3");
         List<Banner> banners = bannerService.list(bw);
         model.addAttribute("banners",banners);
+        //商品促销
         List<Product> products = selectProductsBycondition("sales", 0, 4);
         model.addAttribute("products",products);
-        //查询限时抢购  根据库存存量查询 返回最少的商品
-        List<Product> products1 = selectProductsBycondition("product_stock", 0, 4);
+        //查询限时抢购  根据库存存量查询 返回最多的商品
+        List<Product> products1 = selectProductsBycondition("product_stock", 0, 8);
         model.addAttribute("products1",products1);
         //查询品牌盛宴 根据收藏量查询 返回最多的商品
-        List<Product> products2 = selectProductsBycondition("col_munber", 0, 4);
+        List<Product> products2 = selectProductsBycondition("col_munber", 0, 8);
         model.addAttribute("products2",products2);
+        //热卖排行  根据销售量查询 返回最多的商品
+        List<Product> products3 = selectProductsBycondition("sales", 0, 9);
+        model.addAttribute("products3",products3);
+        //商品超市  根据价格查询   返回最多的商品
+        List<Product> products4 = selectProductsBycondition("basis_price", 0, 9);
+        model.addAttribute("products4",products4);
         return "index";
     }
 /**
@@ -86,6 +92,9 @@ public class MinPage {
         //返回商品关联的相关图片
         List<ProductPho> list = productPhoService.list(new QueryWrapper<ProductPho>().eq("product_id",id));
         model.addAttribute("productPho",list);
+        // 返回商品对应的商家id
+        Merchant merchant = merchantService.getById(product.getMerchantId());
+        model.addAttribute("merchant",merchant);
         return "goods-detail";
     }
 

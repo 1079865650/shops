@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hs.shop.domain.ShopCat;
 import com.hs.shop.service.ShopCatService;
 import com.hs.shop.mapper.ShopCatMapper;
+import com.hs.shop.vo.PersonalCartVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author carryman
@@ -14,7 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShopCatServiceImpl extends ServiceImpl<ShopCatMapper, ShopCat>
     implements ShopCatService{
-
+    @Override
+    public List<PersonalCartVo> selectShopCartById(Integer id) {
+        return baseMapper.selectShopCartById(id);
+    }
 }
 
 

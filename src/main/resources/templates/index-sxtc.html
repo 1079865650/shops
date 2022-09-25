@@ -87,10 +87,10 @@
             <div class="category-tit">全部分类</div>
             <ul class="nav-ul">
                 <li><a href="index.html">首页</a></li>
-                <li><a href="index-dq.html">家用电器</a></li>
-                <li><a href="index-mz.html">美妆馆</a></li>
-                <li><a href="index-sxtc.html">生鲜特产</a></li>
-                <li><a href="search-goods.html">服装城</a></li>
+                <li><a href="toAppliancesPage">家用电器</a></li>
+                <!--                <li><a href="index-mz.html">美妆馆</a></li>-->
+                <li><a href="toFruitPage">生鲜特产</a></li>
+                <!--                <li><a href="search-goods.html">服装城</a></li>-->
             </ul>
             <div class="nav-ad">
                 <a class="ad" href=""><img src="/uploads/nav-ad.jpg" alt="" /></a>
@@ -102,33 +102,16 @@
     <div class="wrapper">
         <div class="category-menu">
             <div class="f-item">
-                <div class="f-tit">新鲜水果</div>
+                <div class="f-tit" th:text="${p_Classification.proCategory.cateName}">新鲜水果</div>
                 <div class="f-list">
-                    <a href="search-goods.html">水果</a><a href="search-goods.html">蔬菜</a><a href="search-goods.html">进口水果</a><a href="search-goods.html">芒果</a><a href="search-goods.html">苹果</a>
+                    <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
                 </div>
                 <div class="c-box">
                     <div class="c-list">
                         <div class="dl">
                             <div class="dt">水果</div>
                             <div class="dd">
-                                <a href="search-goods.html">车厘子/樱桃</a>
-                                <a href="search-goods.html">橙类</a>
-                                <a href="search-goods.html">柚类</a>
-                                <a href="search-goods.html">柠檬</a>
-                                <a href="search-goods.html">苹果</a>
-                            </div>
-                        </div>
-                        <div class="dl">
-                            <div class="dt">蔬菜</div>
-                            <div class="dd">
-                                <a href="search-goods.html">有机蔬菜</a>
-                                <a href="search-goods.html">根茎/瓜类</a>
-                                <a href="search-goods.html">菌菇类</a>
-                                <a href="search-goods.html">叶菜</a>
-                                <a href="search-goods.html">茄果/花菜/豆</a>
-                                <a href="search-goods.html">特色蔬菜</a>
-                                <a href="search-goods.html">加工蔬菜</a>
-                                <a href="search-goods.html">礼盒/券</a>
+                                <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
                             </div>
                         </div>
                     </div>
@@ -138,21 +121,60 @@
                 </div>
             </div>
             <div class="f-item">
-                <div class="f-tit">新鲜水果</div>
+                <div class="f-tit" th:text="${p_Classification.proCategory.cateName}">新鲜水果</div>
                 <div class="f-list">
-                    <a href="search-goods.html">水果</a><a href="search-goods.html">蔬菜</a><a href="search-goods.html">进口水果</a><a href="search-goods.html">芒果</a><a href="search-goods.html">苹果</a>
+                    <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                </div>
+                <div class="c-box">
+                    <div class="c-list">
+                        <div class="dl">
+                            <div class="dt">水果</div>
+                            <div class="dd">
+                                <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="b-img">
+                        <img src="/uploads/46.jpg" alt="" />
+                    </a>
                 </div>
             </div>
             <div class="f-item">
-                <div class="f-tit">新鲜水果</div>
+                <div class="f-tit" th:text="${p_Classification.proCategory.cateName}">新鲜水果</div>
                 <div class="f-list">
-                    <a href="search-goods.html">水果</a><a href="search-goods.html">蔬菜</a><a href="search-goods.html">进口水果</a><a href="search-goods.html">芒果</a><a href="search-goods.html">苹果</a>
+                    <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                </div>
+                <div class="c-box">
+                    <div class="c-list">
+                        <div class="dl">
+                            <div class="dt">水果</div>
+                            <div class="dd">
+                                <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="b-img">
+                        <img src="/uploads/46.jpg" alt="" />
+                    </a>
                 </div>
             </div>
             <div class="f-item">
-                <div class="f-tit">新鲜水果</div>
+                <div class="f-tit" th:text="${p_Classification.proCategory.cateName}">新鲜水果</div>
                 <div class="f-list">
-                    <a href="search-goods.html">水果</a><a href="search-goods.html">蔬菜</a><a href="search-goods.html">进口水果</a><a href="search-goods.html">芒果</a><a href="search-goods.html">苹果</a>
+                    <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                </div>
+                <div class="c-box">
+                    <div class="c-list">
+                        <div class="dl">
+                            <div class="dt">水果</div>
+                            <div class="dd">
+                                <a th:href="|searchAllGoods?pageCurrent=${p.id}|" th:each="p:${p_Classification.proCategories}" th:text="${p.cateName}">水果</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="b-img">
+                        <img src="/uploads/46.jpg" alt="" />
+                    </a>
                 </div>
             </div>
 

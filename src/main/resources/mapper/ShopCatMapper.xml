@@ -16,4 +16,27 @@
         id,user_id,product_id,
         count,deleted
     </sql>
+    <resultMap id="PersonalCart" type="com.hs.shop.vo.PersonalCartVo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="detail" column="detail" jdbcType="VARCHAR"/>
+        <result property="basisPrice" column="basis_price" jdbcType="DECIMAL"/>
+        <result property="productStock" column="product_stock" jdbcType="INTEGER"/>
+        <result property="sales" column="sales" jdbcType="INTEGER"/>
+        <result property="colNumber" column="col_munber" jdbcType="INTEGER"/>
+        <result property="mainPhoto" column="main_photo" jdbcType="VARCHAR"/>
+        <result property="cateIds" column="cate_ids" jdbcType="VARCHAR"/>
+        <result property="merchantId" column="merchant_id" jdbcType="INTEGER"/>
+        <result property="attr1Id" column="attr1_id" jdbcType="INTEGER"/>
+        <result property="attr2Id" column="attr2_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="selectShopCartById" resultMap="PersonalCart">
+        select s.id, s.user_id, s.product_id, s.count, p.product_name, p.detail, p.basis_price, p.product_stock, p.sales, p.col_munber, p.main_photo, p.cate_ids, p.merchant_id, p.attr1_id, p.attr2_id, p.deleted
+        from shop_cat s left join product p
+        on s.product_id=p.id
+        where s.user_id=${id}
+    </select>
 </mapper>

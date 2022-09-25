@@ -88,11 +88,10 @@
             <div class="slogan"></div>
             <ul class="nav-ul">
                 <li><a href="index.html">首页</a></li>
-
-                <li><a href="index-dq.html">家用电器</a></li>
-                <li><a href="index-mz.html">美妆馆</a></li>
-                <li><a href="index-sxtc.html">生鲜特产</a></li>
-                <li><a href="search-goods.html">服装城</a></li>
+                <li><a href="toAppliancesPage">家用电器</a></li>
+<!--                <li><a href="index-mz.html">美妆馆</a></li>-->
+                <li><a href="toFruitPage">生鲜特产</a></li>
+<!--                <li><a href="search-goods.html">服装城</a></li>-->
 
             </ul>
             <div class="nav-ad">
@@ -102,109 +101,36 @@
     </div>
     <!--头部-->
 
-    <!-- <div class="side-category" style="display: none;">
-        <div class="side-category-tit">全品分类</div>
-        <div class="side-category-bd">
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">玩转3C</div>
-                    <div class="f-list">
-                        <a href="">手机</a><a href="">数码</a><a href="">通信</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                    <div class="hd">分类</div>
-                    <div class="bd">
-                        <div class="list-wrap">
-                            <a href="">冷却泵</a>
-                            <a href="">冷却水管道</a>
-                            <a href="">冷凝器</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷冻水塔</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷凝器</a>
-                            <a href="">压缩机</a>
-                            <a href="">冷冻水塔</a>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">服饰家居</div>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <div class="f-tit">商城超市</div>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <a class="f-tit" href="index-dq.html">家用电器</a>
-                    <div class="f-list">
-                        <a href="">服饰内衣</a><a href="">鞋靴箱包</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-            <div class="f-item">
-                <div class="f-box">
-                    <a class="f-tit" href="index-sxtc.html">生鲜特产</a>
-                    <div class="f-list">
-                        <a href="">食品</a><a href="">生鲜</a><a href="">特产</a><a href="">水果</a>
-                    </div>
-                </div>
-                <div class="c-box">
-                </div>
-            </div>
-        </div>
-        <div class="side-category-ft" data-action="category-toggle">
-            <span class="label tohide">收起导航</span>
-            <span class="label toshow">展开导航</span>
-        </div>
-    </div> -->
 
     <!-- 商品轮播图 -->
 
     <div id="home-full-banner1" class="home-full-banner">
-        <a href="" class="item"><img data-lazy="/uploads/banner1.jpg" alt="" /></a>
-        <a href="" class="item"><img data-lazy="/uploads/banner3.jpg" alt="" /></a>
-        <a href="" class="item"><img data-lazy="/uploads/b2.jpg" alt="" /></a>
-
+        <span th:each="b : ${banners}">
+            <a th:href="|goodsDetail?id=${b.id}|" class="item"><img th:data-lazy="|showImg?filename=${b.bannerImg}|" alt="" /></a>
+        </span>
+<!--        <a href="" class="item"><img th:data-lazy="/uploads/banner1.jpg" alt="" /></a>-->
+<!--        <a href="" class="item"><img data-lazy="/uploads/banner3.jpg" alt="" /></a>-->
+<!--        <a href="" class="item"><img data-lazy="/uploads/b2.jpg" alt="" /></a>-->
     </div>
 
     <div class="gray-box">
         <div class="wrapper">
             <!-- 商品促销 -->
             <div id="promo-list-clearfix-one" class="promo-list clearfix">
-                <div class="col">
-                    <a class="item" href="#"><img src="/uploads/13.jpg" alt="" /></a>
+                <span th:each="p : ${products}">
+                     <div class="col">
+                    <a class="item" th:href="@{goodsDetail}+'?id='+${p.id}" ><img th:src="@{showImg}+'?filename='+${p.mainPhoto}" alt="" /></a>
                 </div>
-                <div class="col">
-                    <a class="item" href="#"><img src="/uploads/14.jpg" alt="" /></a>
-                </div>
-                <div class="col">
-                    <a class="item" href="#"><img src="/uploads/15.jpg" alt="" /></a>
-                </div>
-                <div class="col">
-                    <a class="item" href="#"><img src="/uploads/16.jpg" alt="" /></a>
-                </div>
+                </span>
+<!--                <div class="col">-->
+<!--                    <a class="item" href="#"><img src="/uploads/14.jpg" alt="" /></a>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <a class="item" href="#"><img src="/uploads/15.jpg" alt="" /></a>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <a class="item" href="#"><img src="/uploads/16.jpg" alt="" /></a>-->
+<!--                </div>-->
             </div>
 
             <!-- 限时抢购 -->
@@ -214,71 +140,28 @@
                 </div>
                 <div id="flash-sale-clearfix-one" class="flash-sale clearfix">
                     <div class="grid grid-b">
-                        <a href="goods-detail.html"><img src="/uploads/17.jpg" alt="" /></a>
+                        <a th:href="@{goodsDetail}+'?id='+${products1[0].id}"><img th:src="|showImg?filename=${products1[0].mainPhoto}|" alt="" /></a>
                     </div>
-                    <div class="grid grid-m">
-                        <a href="goods-detail.html">
+
+                    <div class="grid grid-m" >
+                            <a th:href="@{goodsDetail}+'?id='+${products1[1].id}">
                             <div class="inner-text">
-                                <div class="tit">小米Max</div>
-                                <div class="stit">6.44''大屏黄金尺寸</div>
+                                <div class="tit" th:text="${products1[1].productName}">小米Max</div>
+                                <div class="stit" th:text="${products1[1].detail}">6.44''大屏黄金尺寸</div>
                             </div>
-                            <img src="/uploads/18.jpg" alt="" />
-                        </a>
+                            <img th:src="|showImg?filename=${products1[1].mainPhoto}|" alt="" />
+                            </a>
                     </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
+                    <div class="grid grid-s" th:each="p:${#numbers.sequence(2,7)}">
+                            <a th:href="@{goodsDetail}+'?id='+${products1[p].id}">
                             <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
+                                <div class="tit" th:text="${products1[p].productName}">小米Max</div>
+                                <div class="stit" th:text="${products1[p].detail}">6.44''大屏黄金尺寸</div>
                             </div>
-                            <img src="/uploads/53.jpg" alt="" />
-                        </a>
+                            <img th:src="|showImg?filename=${products1[p].mainPhoto}|" alt="" />
+                            </a>
                     </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
-                            </div>
-                            <img src="/uploads/57.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
-                            </div>
-                            <img src="/uploads/52.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
-                            </div>
-                            <img src="/uploads/20.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
-                            </div>
-                            <img src="/uploads/19.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
-                            </div>
-                            <img src="/uploads/20.jpg" alt="" />
-                        </a>
-                    </div>
+
                 </div>
             </div>
             <!-- 广告 -->
@@ -297,74 +180,29 @@
                 </div>
                 <div id="brand-feast-clearfix-one" class="flash-sale clearfix">
                     <div class="grid grid-b">
-                        <a href="goods-detail.html"><img src="/uploads/17.jpg" alt="" /></a>
+                        <a th:href="|goodsDetail?id=${products2[0].id}|"><img th:src="|showImg?filename=${products2[0].mainPhoto}|" alt="" /></a>
                     </div>
 
                     <div class="grid grid-m">
-                        <a href="goods-detail.html">
+                        <a th:href="|goodsDetail?id=${products2[1].id}|">
                             <div class="inner-text">
-                                <div class="tit">小米Max</div>
-                                <div class="stit">6.44''大屏黄金尺寸</div>
+                                <div class="tit" th:text="${products2[1].productName}">小米Max</div>
+                                <div class="stit" th:text="${products2[1].detail}">6.44''大屏黄金尺寸</div>
                             </div>
-                            <img src="/uploads/18.jpg" alt="" />
+                            <img th:src="|showImg?filename=${products2[1].mainPhoto}|" alt="" />
                         </a>
                     </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
-                            </div>
-                            <img src="/uploads/53.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
-                            </div>
-                            <img src="/uploads/57.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
-                            </div>
-                            <img src="/uploads/52.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
-                            </div>
-                            <img src="/uploads/20.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
-                            <div class="inner-text">
-                                <div class="tit">无线运动耳麦</div>
-                                <div class="stit">大牌钜惠驾到</div>
-                            </div>
-                            <img src="/uploads/19.jpg" alt="" />
-                        </a>
 
-                   
-                    </div>
-                    <div class="grid grid-s">
-                        <a href="goods-detail.html">
+                    <div class="grid grid-s" th:each="p : ${#numbers.sequence(2,7)}">
+                        <a th:href="@{goodsDetail}+'?id='+${products2[p].id}">
                             <div class="inner-text">
-                                <div class="tit">靠谱好装备</div>
-                                <div class="stit">简约书台柜组合</div>
+                                <div class="tit" th:text="${products2[p].productName}">小米Max</div>
+                                <div class="stit" th:text="${products2[p].detail}">6.44''大屏黄金尺寸</div>
                             </div>
-                            <img src="/uploads/20.jpg" alt="" />
+                            <img th:src="|showImg?filename=${products2[p].mainPhoto}|" alt="" />
                         </a>
                     </div>
+
 
                 </div>
                 <!-- 广告 -->
@@ -380,110 +218,61 @@
             <!-- floor1到floor5控制楼层的主题 -->
             <div class="floor-section floor1">
                 <div class="section-hd">
-                    <div class="title">3C数码</div>
-
+                    <div class="title">热买排行</div>
                 </div>
                 <div class="section-bd clearfix">
                     <div class="section-side">
-                        <div class="banner">
-
-                            <a href="search-goods.html" id="section-bd-clearfix-one-child">
-                                <img src="/uploads/27.jpg" alt="" />
+                        <div class="banner" th:object="${products3[0]}">
+                            <a th:href="@{goodsDetail}+'?id='+*{id}" id="section-bd-clearfix-one-child">
+                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
                                 <div class="inner-text">
-                                    <div class="tit" style="margin-top:30px ;margin-left: 20px;font-size: 16px;">设计最爱之w3c数位板</div>
-                                    <div class="info" style="margin-left: 20px;color: red;">爆款满1000减99 </div>
+                                    <div class="tit" style="margin-top:30px ;margin-left: 20px;font-size: 16px;" th:text="*{productName}">设计最爱之w3c数位板</div>
+                                    <div class="info" style="margin-left: 20px;color: red;" th:text="*{detail}">爆款满1000减99 </div>
                                 </div>
-
-                          
                             </a>
                         </div>
                     </div>
+
                     <div class="section-cont">
                         <div class="col" id="section-bd-clearfix-two-child">
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
+
+                            <a class="grid grid-s" th:href="@{goodsDetail}+'?id='+${products3[p].id}" th:each="p:${#numbers.sequence(1,3)}">
+                                <img th:src="@{showImg}+'?filename='+${products3[p].mainPhoto}" alt="" />
                                 <div class="inner-text">
-                                    <div class="tit">电蛇按摩耳机</div>                              
-                                    <div class="info">电流刺激 极致享受 </div>
+                                    <div class="tit" th:text="${products3[p].productName}">电蛇按摩耳机</div>
+                                    <div class="info" th:text="${products3[p].detail}">电流刺激 极致享受 </div>
                                 </div>
-
                             </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">火龙果pro max ultra 靓丽版</div>
-                                    <div class="info">15999 即刻购买加送钢化膜</div>
-                                </div>
 
-                                <img src="/img/sm/7.jpeg" alt="" />
-
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">赵丽颖代言大米手机</div>
-                                    <div class="info">顶配1999做朋友 + 送赵丽颖签名照 </div>
-                                </div>
-
-
-
-                                <img src="/img/sm/8.png" alt="" />
-
-                            </a>
                             
                         </div>
                         <div class="col" id="section-bd-clearfix-three-child">
-                            <a class="grid grid-b" href="">
-                                <img src="/uploads/18.jpg" alt="" />
+                            <a class="grid grid-b" th:href="@{goodsDetail}+'?id='+*{id}" th:object="${products3[4]}">
+<!--                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />-->
                                 <div class="inner-text">
-                                    <div class="tit">ps6</div>
-                                    <div class="info">大量ps6现货滞销 救救我们把 </div>
+                                    <div class="tit" th:text="*{productName}">ps6</div>
+                                    <div class="info" th:text="*{detail}">大量ps6现货滞销 救救我们把 </div>
                                 </div>
-
-                                <img src="/img/sm/3.png" alt="" />
-
+                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
                             </a>
-                            <a class="grid grid-m" href="">
-                                <img src="/uploads/32.jpg" alt="" />
+                            <a class="grid grid-m" th:href="@{goodsDetail}+'?id='+*{id}" th:object="${products3[5]}">
+<!--                                <img src="/uploads/32.jpg" alt="" />-->
                                 <div class="inner-text">
-                                    <div class="tit">劳李士手表</div>
-                                    <div class="info">促销500w 领50块优惠券 </div>
+                                    <div class="tit" th:text="*{productName}">劳李士手表</div>
+                                    <div class="info" th:text="*{detail}">促销五百万</div>
                                 </div>
-
-                                <img src="/img/sm/4.jpg" alt="" />
-
+                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
                             </a>
                         </div>
+
                         <div class="col" id="section-bd-clearfix-four-child">
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
+                            <a class="grid grid-s" th:href="@{goodsDetail}+'?id='+${products3[p].id}" th:each="p:${#numbers.sequence(6,8)}">
+<!--                                <img src="/uploads/19.jpg" alt="" />-->
                                 <div class="inner-text">
-                                    <div class="tit">x-fox游戏手柄</div>
-                                    <div class="info">原价599 现59 </div>
+                                    <div class="tit" th:text="${products3[p].productName}">x-fox游戏手柄</div>
+                                    <div class="info" th:text="${products3[p].detail}">原价599 现59 </div>
                                 </div>
-
-                                <img src="/img/sm/5.jpg" alt="" />
-
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">G520游戏鼠标</div>
-                                    <div class="info">￥450（非特种兵谨慎购买） </div>
-                                </div>
-
-                                <img src="/img/sm/9.jpg" alt="" />
-
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">外猩人笔记本</div>
-                                    <div class="info">全新上市5090ti </div>
-                                </div>
-
-                                <img src="/img/sm/2.jpg" alt="" />
-
+                                <img th:src="|showImg?filename=${products3[p].mainPhoto}|" alt="" />
                             </a>
                         </div>
                     </div>
@@ -498,95 +287,61 @@
                 <div class="section-hd">
                     <div class="title">商城超市</div>
                     <div class="bar more">
-
                     </div>
                 </div>
                 <div class="section-bd clearfix">
                     <div class="section-side">
-
-                        <div class="banner" >
-                            <a href="" id="section-bd-clearfix-one-child-copy">
-                                <img src="/uploads/30.jpg" alt="" />
+                        <div class="banner" th:object="${products4[0]}">
+                            <a th:href="@{goodsDetail}+'?id='+*{id}" id="section-bd-clearfix-one-child">
+                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
                                 <div class="inner-text">
-                                    <div class="tit" style="margin-top:30px ;margin-left: 20px;font-size: 16px;color: rgb(239, 239, 247);">设计最爱之w3c数位板</div>
-                                    <div class="info" style="margin-left: 20px;color: rgb(45, 201, 14);">爆款满1000减99 </div>
+                                    <div class="tit" style="margin-top:30px ;margin-left: 20px;font-size: 16px;" th:text="*{productName}">设计最爱之w3c数位板</div>
+                                    <div class="info" style="margin-left: 20px;color: red;" th:text="*{detail}">爆款满1000减99 </div>
                                 </div>
                             </a>
-
                         </div>
-
                     </div>
+
                     <div class="section-cont">
-                        <div class="col" id="section-bd-clearfix-two-child-copy">
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
+                        <div class="col" id="section-bd-clearfix-two-child">
 
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
+                            <a class="grid grid-s" th:href="@{goodsDetail}+'?id='+${products4[p].id}" th:each="p:${#numbers.sequence(1,3)}">
+                                <img th:src="@{showImg}+'?filename='+${products4[p].mainPhoto}" alt="" />
                                 <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
+                                    <div class="tit" th:text="${products4[p].productName}">电蛇按摩耳机</div>
+                                    <div class="info" th:text="${products4[p].detail}">电流刺激 极致享受 </div>
                                 </div>
-
                             </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
 
-                            </a>
                         </div>
-                        <div class="col" id="section-bd-clearfix-three-child-copy">
-                            <a class="grid grid-b" href="">
-                                <img src="/uploads/18.jpg" alt="" />
+                        <div class="col" id="section-bd-clearfix-three-child">
+                            <a class="grid grid-b" th:href="@{goodsDetail}+'?id='+*{id}" th:object="${products4[4]}">
+                                <!--                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />-->
                                 <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
+                                    <div class="tit" th:text="*{productName}">ps6</div>
+                                    <div class="info" th:text="*{detail}">大量ps6现货滞销 救救我们把 </div>
                                 </div>
-
+                                <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
                             </a>
-                            <a class="grid grid-m" href="">
-                                <img src="/uploads/32.jpg" alt="" />
+                            <a class="grid grid-m" th:href="@{goodsDetail}+'?id='+*{id}" th:object="${products4[5]}">
+                                <!--                                <img src="/uploads/32.jpg" alt="" />-->
                                 <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
-
-                            </a>
+                                    <div class="tit" th:text="*{productName}">劳李士手表</div>
+                                <div class="info" th:text="*{detail}">促销五百万</div>
                         </div>
-                        <div class="col" id="section-bd-clearfix-four-child-copy">
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
+                        <img th:src="|showImg?filename=*{mainPhoto}|" alt="" />
+                        </a>
+                    </div>
 
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
-
-                            </a>
-                            <a class="grid grid-s" href="goods-detail.html">
-                                <img src="/uploads/19.jpg" alt="" />
-                                <div class="inner-text">
-                                    <div class="tit">设计最爱之w3c数位板</div>
-                                    <div class="info">爆款满1000减99 </div>
-                                </div>
-
-                            </a>
-                        </div>
+                    <div class="col" id="section-bd-clearfix-four-child">
+                        <a class="grid grid-s" th:href="@{goodsDetail}+'?id='+${products4[p].id}" th:each="p:${#numbers.sequence(6,8)}">
+                            <!--                                <img src="/uploads/19.jpg" alt="" />-->
+                            <div class="inner-text">
+                                <div class="tit" th:text="${products4[p].productName}">x-fox游戏手柄</div>
+                                <div class="info" th:text="${products4[p].detail}">原价599 现59 </div>
+                            </div>
+                            <img th:src="|showImg?filename=${products4[p].mainPhoto}|" alt="" />
+                        </a>
                     </div>
                 </div>
             </div>

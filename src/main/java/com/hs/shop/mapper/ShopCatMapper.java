@@ -2,6 +2,9 @@ package com.hs.shop.mapper;
 
 import com.hs.shop.domain.ShopCat;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hs.shop.vo.PersonalCartVo;
+
+import java.util.List;
 
 /**
 * @author carryman
@@ -10,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.hs.shop.domain.ShopCat
 */
 public interface ShopCatMapper extends BaseMapper<ShopCat> {
+    //个人购物车联查
+    List<PersonalCartVo> selectShopCartById(Integer id);
 
 }
 

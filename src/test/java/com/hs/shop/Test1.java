@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hs.shop.domain.ProCategory;
 import com.hs.shop.domain.Product;
+import com.hs.shop.mapper.ShopCatMapper;
 import com.hs.shop.service.MerchantService;
 import com.hs.shop.service.ProCategoryService;
 import com.hs.shop.service.ProductService;
+import com.hs.shop.service.ShopCatService;
+import com.hs.shop.vo.PersonalCartVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +26,10 @@ public class Test1 {
     private ProductService productService;
     @Autowired
     private ProCategoryService proCategoryService;
+    @Autowired
+    private ShopCatService shopCatService;
+    @Autowired
+    private ShopCatMapper shopCatMapper;
 
     @Test
     public void t1() {
@@ -71,6 +78,13 @@ public class Test1 {
         qw.and(i -> i.like("cate_name","戴尔").eq("level",1));
         List<ProCategory> list = proCategoryService.list(qw);
         for(ProCategory p : list){
+            System.out.println(p.toString());
+        }
+    }
+    @Test
+    public void t6(){
+        List<PersonalCartVo> personalCartVos = shopCatMapper.selectShopCartById(1);
+        for(PersonalCartVo p : personalCartVos){
             System.out.println(p.toString());
         }
     }
