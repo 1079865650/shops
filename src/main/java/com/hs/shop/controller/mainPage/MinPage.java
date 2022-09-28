@@ -3,6 +3,8 @@ package com.hs.shop.controller.mainPage;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hs.shop.domain.*;
 import com.hs.shop.service.*;
+import com.hs.shop.vo.CityAndCounties;
+import com.hs.shop.vo.ProvinceAndCity;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +40,8 @@ public class MinPage {
     ProductPhoService productPhoService;
     @Autowired
     MerchantService merchantService;
+    @Autowired
+    ProvinceService provinceService;
 
    /**
     * 返回index.html主页面  并且返回主页面需要的所有数据
@@ -109,6 +114,30 @@ public class MinPage {
         IOUtils.copy(fin,out);
         out.close();
         fin.close();
+    }
+
+    /**
+     * 省市区联动
+     * @param province
+     * @return
+     */
+    @RequestMapping("selectAllProvince")
+    @ResponseBody
+    public Object selectAllProvince(String province){
+        ProvinceAndCity provinceAndCity = new ProvinceAndCity();
+        List<CityAndCounties> list = new ArrayList<>();
+        Province areaName = provinceService.getOne(new QueryWrapper<Province>().eq("areaName", province));
+        List<Province> provinces = provinceService.list(new QueryWrapper<Province>().eq("parent_id", areaName.getId()));
+        for (Province p : provinces){
+            CityAndCounties cityAndCounties1 = new CityAndCounties();
+            List<Province> counties = provinceService.list(new QueryWrapper<Province>().eq("parent_id", p.getId()));
+            cityAndCounties1.setCity(p);
+            cityAndCounties1.setCounties(counties);
+            list.add(cityAndCounties1);
+        }
+        provinceAndCity.setProvince(areaName);
+        provinceAndCity.setCities(list);
+        return R.ok(provinceAndCity);
     }
 
 }
